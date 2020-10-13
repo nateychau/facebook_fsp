@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import configureStore from './store/store';
 import Root from './components/root'
+import { logOut } from './util/session/session_api_util';
 
 document.addEventListener("DOMContentLoaded", () => {
     let store;
@@ -10,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
         entities: {
           users: { [window.currentUser.id]: window.currentUser }
         },
-        session: { id: window.currentUser.id }
+        session: { currentUser: window.currentUser.id }
       };
       store = configureStore(preloadedState);
       delete window.currentUser;
@@ -19,6 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     //BEGIN TESTING
+    window.logOut = logOut;
     window.getState = store.getState;
     window.dispatch = store.dispatch;
     //END TESTING

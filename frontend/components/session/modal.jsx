@@ -4,6 +4,23 @@ import { connect } from 'react-redux';
 import { signup, clearErrors } from '../../actions/session/session_actions'
 
 
+const mapStateToProps = state => {
+    return {
+      modal: state.ui.modal,
+      errors: state.errors,
+      session: state.session
+    };
+  };
+  
+  const mapDispatchToProps = dispatch => {
+    return ({
+      closeModal: () => dispatch(closeModal()),
+      processForm: (user) => dispatch(signup(user)),
+      clearErrors: () => dispatch(clearErrors())
+    });
+  };
+  
+
 class Modal extends React.Component {
     constructor(props){
         super(props);
@@ -27,7 +44,7 @@ class Modal extends React.Component {
         const user = Object.assign({}, this.state);
         if(Object.values(this.state).some(val => val === "") || this.state.birthday === "0/0/0"){
             Object.keys(this.state).forEach(key=>{
-                if(this.state[key] === "" || this.state.birthday === "0/0/0"){
+                if(this.state[key] === "" || (key === "birthday" && this.state.birthday === "0/0/0")){
                     if(key === 'birthday'){
                         let els = document.querySelectorAll('select');
                         els.forEach((el)=>el.classList.add("required"));
@@ -187,22 +204,6 @@ class Modal extends React.Component {
         );
     }
 }
-
-const mapStateToProps = state => {
-  return {
-    modal: state.ui.modal,
-    errors: state.errors,
-    session: state.session
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    closeModal: () => dispatch(closeModal()),
-    processForm: (user) => dispatch(signup(user)),
-    clearErrors: () => dispatch(clearErrors())
-  };
-};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Modal);
 

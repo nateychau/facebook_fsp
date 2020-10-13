@@ -32,19 +32,15 @@ export const clearErrors = () => {
 
 export const login = (formUser) => (dispatch) => {
     SessionAPIUtil.logIn(formUser)
-        .then((user) => dispatch(receiveCurrentUser(user)))
-        .fail((errors) => dispatch(receiveErrors(errors)));
+        .then((user) => (dispatch(receiveCurrentUser(user))), (errors) => (dispatch(receiveErrors(errors))));
 }
 
 export const logout = () => (dispatch) => {
     SessionAPIUtil.logOut()
-        .then(() => dispatch(logoutCurrentUser()))
-        .fail((errors) => dispatch(receiveErrors(errors)));
-
+        .then(() => (dispatch(logoutCurrentUser())), (errors) => (dispatch(receiveErrors(errors))));
 }
 
 export const signup = (formUser) => (dispatch) => {
     SessionAPIUtil.signUp(formUser)
-        .then((user) => dispatch(receiveCurrentUser(user)))
-        .fail((errors) => dispatch(receiveErrors(errors)));
+        .then((user) => (dispatch(receiveCurrentUser(user))), (errors) => (dispatch(receiveErrors(errors))));
 }
