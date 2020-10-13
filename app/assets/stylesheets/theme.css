@@ -1,0 +1,22 @@
+
+
+body{
+    font-family: Helvetica, Arial, sans-serif;
+    background-color: #f0f2f5;
+    font-size: 12px;
+}
+
+
+ .btn{
+     border: none;
+     border-radius: 6px;
+     margin: 6px 0;
+     padding: 0px 16px;
+     cursor: pointer;
+     font-weight: bold;
+     justify-content: center;
+     text-align: center;
+     vertical-align: middle;
+ }
+
+ 

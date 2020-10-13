@@ -1,0 +1,112 @@
+.splash{
+    display: flex;
+    flex-direction: row;
+    margin: 10% 10%;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.login{
+    right: 50px;
+    position: relative;
+    text-align: center;
+    display: flex;
+    border: 1px solid grey; 
+    width: 25%;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    border: none;
+    border-radius: 8px;
+    margin: 40px 0 0;
+    padding: 10px 0 24px; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1)
+}
+
+.login input {
+    border-radius: 6px;
+    font-size: 17px;
+    padding: 14px 16px;
+    width: 90%;
+    border: 1px solid #dddfe2;
+    color: #1d2129;
+    height: 22px;
+    line-height: 16px;
+    vertical-align: middle;
+}
+
+.login input:focus{
+    border-color: #1877f2;
+    border-width: 1px;
+    border-radius: 6px;
+    outline: none;
+}
+
+.accent{
+    font-size: 20px;
+    line-height: 48px;
+    background-color: #1877f2;
+    color: #fff;
+    width: 92%;
+}
+
+.accent:hover{
+    background-color: #166fe5;
+}
+
+.sign-up{
+    font-size: 17px;
+    line-height: 48px;
+    background-color: #42b72a;
+    color: #fff;
+    width: 60%;
+}
+
+.sign-up:hover{
+    background-color: #36a420;
+}
+
+.login .line{
+    border-bottom: 1px solid #dadde1;
+    margin-top: 7%;
+    margin-bottom: 7%;
+    align-items: center;
+    width: 90%;
+}
+
+form div{
+    text-align: center;
+    padding: 6px 0;
+    width: 92%;
+    margin: auto;
+    display: inline-block;
+}
+
+form{
+    margin: 0;
+    padding: 0;
+    display: block;
+}
+
+.error{
+    color: red;
+}
+
+.splash-text{
+    width: 40%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.splash-text h2{
+    font-weight: bold;
+    font-size: 60px;
+    color: #1877f2;
+}
+
+.splash-text h4{
+    font-size: 28px;
+    font-weight: normal;
+    line-height: 32px;
+    letter-spacing: normal;
+}
