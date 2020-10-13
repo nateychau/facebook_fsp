@@ -21,6 +21,7 @@ class Api::UsersController < ApplicationController
             :email, 
             :password,
             :bio, 
+            :gender,
             :birthday,
             :location, 
             :work,

@@ -43,3 +43,6 @@ table {
 	border-spacing: 0;
 }
 
+input:focus, button:focus{
+	outline: 0;
+}

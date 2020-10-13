@@ -1,8 +1,12 @@
+//THIS FILE IS DEPRECATED. CHECK MODAL.JSX
+
+
 import { connect } from 'react-redux';
 import { signup, clearErrors } from '../../actions/session/session_actions'
-import SessionForm from './session_form'
+import SessionForm from './login_form'
 
 const mapStateToProps = (state, ownProps) => {
+
     return ({
         errors: state.errors,
         formType: 'signup',
