@@ -52,10 +52,10 @@ export default class LoginForm extends React.Component {
                     {/* <h3>{header}</h3> */}
                     <form>
                         <div>
-                            <input type="text" onChange={this.handleInput('email')} value={this.state.email} placeholder="Email"></input>
+                            <input className={errorArr.length ? "required" : ''} type="text" onChange={this.handleInput('email')} value={this.state.email} placeholder="Email"></input>
                         </div>
                         <div>
-                            <input type="password" onChange={this.handleInput('password')} value={this.state.password} placeholder="Password"></input>
+                            <input className={errorArr.length ? "required" : ''} type="password" onChange={this.handleInput('password')} value={this.state.password} placeholder="Password"></input>
                         </div>
                         {errorArr.length ? 
                         <ul className="error">{errorArr}</ul> 

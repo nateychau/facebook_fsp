@@ -1,4 +1,4 @@
-import Greeting from './greeting';
+import Greeting from './nav_bar';
 import { connect } from 'react-redux';
 import { logout } from '../../actions/session/session_actions';
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { closeModal } from '../../actions/modal_actions';
 import { connect } from 'react-redux';
 import { signup, clearErrors } from '../../actions/session/session_actions'
-
+import ErrorTip from './error_tip';
 
 const mapStateToProps = state => {
     return {
@@ -13,11 +13,11 @@ const mapStateToProps = state => {
   };
   
   const mapDispatchToProps = dispatch => {
-    return ({
+    return {
       closeModal: () => dispatch(closeModal()),
       processForm: (user) => dispatch(signup(user)),
       clearErrors: () => dispatch(clearErrors())
-    });
+    };
   };
   
 
@@ -26,11 +26,23 @@ class Modal extends React.Component {
         super(props);
         this.state = {
             first_name: "",
+            first_name_error: false,
+            first_name_border: false,
             last_name: "",
+            last_name_error: false,
+            last_name_border: false,
             birthday: "0/0/0",
+            birthday_error: false,
+            birthday_border: false,
             gender: "",
+            gender_error: false,
+            gender_border: false,
             password: "",
-            email: ""
+            password_error: false,
+            password_border: false,
+            email: "",
+            email_error: false,
+            email_border: false,
         };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleInput = this.handleInput.bind(this);
@@ -45,53 +57,48 @@ class Modal extends React.Component {
         if(Object.values(this.state).some(val => val === "") || this.state.birthday === "0/0/0"){
             Object.keys(this.state).forEach(key=>{
                 if(this.state[key] === "" || (key === "birthday" && this.state.birthday === "0/0/0")){
-                    if(key === 'birthday'){
-                        let els = document.querySelectorAll('select');
-                        els.forEach((el)=>el.classList.add("required"));
-                    }else if(key === 'gender'){
-                        let els = document.getElementsByClassName('gender-container')
-                        Array.from(els).forEach((el)=>el.classList.add("required"));
-                    }else{
-                        let el = document.getElementById(key);
-                        el.classList.add("required");
-                    }
+                    let border = `${key}_border`;
+                    this.setState({[border]:true});
                 }
             })
-            return;
         }else{
             this.props.processForm(user).then(this.props.closeModal);
         }
     }
 
     handleInput(type){
+        let err = `${type}_error`;
+        let border = `${type}_border`
         return (e) => {
-            this.setState({[type]: e.target.value});
-            if(type="gender"){
-                let els = document.getElementsByClassName('gender-container')
-                Array.from(els).forEach((el)=>el.classList.remove("required"));
-            }else{
-                e.target.classList.remove("required");
-            }
+            this.setState({[type]: e.target.value, [border]: false, [err]: false});
         }
     }
 
     handleRequired(id){
+        let err = `${id}_error`;
+        let border = `${id}_border`;
         return() => {
             if(this.state[id] === ""){
-                document.getElementById(id).classList.add("required");
+                this.setState({[err]: false, [border]: true});
             }
         }
     }
 
-    handleFocus(e){
-        e.target.classList.remove("required");
+    handleFocus(id){
+        let err = `${id}_error`;
+        let border = `${id}_border`;
+        return (e) =>{
+            if(this.state[border]){
+                this.setState({[border]: false, [err]: true})
+            }
+        }
     }
-
-
 
     handleDate(type){
         let bdayArr = this.state.birthday.split('/');
         let idx
+        let err = 'birthday_error'
+        let border = 'birthday_border'
         switch(type){
             case 'month':
                 idx = 0;
@@ -105,7 +112,7 @@ class Modal extends React.Component {
         }
         return(e) => {
             bdayArr[idx] = e.target.value;
-            this.setState({birthday: bdayArr.join('/')});
+            this.setState({birthday: bdayArr.join('/'), [err]: false, [border]: false});
         }
     }
 
@@ -113,7 +120,12 @@ class Modal extends React.Component {
         this.props.clearErrors();
     }
 
+    // componentDidUpdate(){
+    //     const errorArr = this.props.errors.login.length ? this.props.errors.login : []
+    // }
+
     render(){
+        console.log()
         if (!this.props.modal) {
         return null;
         }
@@ -122,7 +134,8 @@ class Modal extends React.Component {
             return (
                 <li>{error}</li>
             )
-        }) : [];
+        }) : []
+
 
         const dayArr = Array.from(new Array(31), (x, i) => i + 1);
         const dayOptions = dayArr.map(day=>{
@@ -132,7 +145,6 @@ class Modal extends React.Component {
         const yearOptions = yearArr.map(year=>{
             return <option value={year} key={year}>{year}</option>
         }); 
-
         return (
             <div className="modal-background" onClick={() => {this.props.clearErrors(); this.props.closeModal();}}>
                 <div className="modal-child" onClick={e => e.stopPropagation()}>
@@ -141,23 +153,31 @@ class Modal extends React.Component {
                         <div className="sign-up-text">
                             <h2>Sign Up</h2>
                             <p>It's quick and easy.</p>
-                        </div>
+                        </div>                       
                         <form>
+                        {errorArr.length ? 
+                        <ul className="signup-error">{errorArr}</ul> 
+                        : <></>}
                             <div className="small">
-                                <input id="first_name" onFocus={this.handleFocus} onBlur={this.handleRequired("first_name")} type="text" onChange={this.handleInput('first_name')} value={this.state.first_name} placeholder="First Name"></input>
-                                <input id="last_name" onFocus={this.handleFocus} onBlur={this.handleRequired("last_name")} type="text" onChange={this.handleInput('last_name')} value={this.state.last_name} placeholder="Last Name"></input>
+                                {this.state.first_name_error ? <ErrorTip error={"First name can't be blank"} class={"left"}/> : ''}
+                                <input id="first_name" className={this.state.first_name_border ? "required" : ""} onFocus={this.handleFocus("first_name")} onBlur={this.handleRequired("first_name")} type="text" onChange={this.handleInput('first_name')} value={this.state.first_name} placeholder="First Name"></input>
+                                {this.state.last_name_error ? <ErrorTip error={"Last name can't be blank"} class={"bottom"}/> : ''}
+                                <input id="last_name" className={this.state.last_name_border ? "required" : ""} onFocus={this.handleFocus("last_name")} onBlur={this.handleRequired("last_name")} type="text" onChange={this.handleInput('last_name')} value={this.state.last_name} placeholder="Last Name"></input>
                             </div>
                             {/* <div className="small">
                             </div> */}
                             <div>
-                                <input id="email" onFocus={this.handleFocus} onBlur={this.handleRequired("email")} type="text" onChange={this.handleInput('email')} value={this.state.email} placeholder="Email"></input>
+                                {this.state.email_error ? <ErrorTip error={"Email can't be blank"} class={"left"}/> : ''}
+                                <input id="email" className={this.state.email_border ? "required" : ""} onFocus={this.handleFocus("email")} onBlur={this.handleRequired("email")} type="text" onChange={this.handleInput('email')} value={this.state.email} placeholder="Email"></input>
                             </div>
                             <div>
-                                <input id="password" onFocus={this.handleFocus} onBlur={this.handleRequired("password")} type="password" onChange={this.handleInput('password')} value={this.state.password} placeholder="Password"></input>
+                                {this.state.password_error ? <ErrorTip error={"Password can't be blank"} class={"left"}/> : ''}
+                                <input id="password" className={this.state.password_border ? "required" : ""} onFocus={this.handleFocus("password")} onBlur={this.handleRequired("password")} type="password" onChange={this.handleInput('password')} value={this.state.password} placeholder="Password"></input>
                             </div>
                             <div className='sub'>
+                                {this.state.birthday_error ? <ErrorTip error={"Birthday can't be blank"} class={"left"}/> : ''}
                                 <label>Birthday</label>
-                                <select onFocus={this.handleFocus} onChange={this.handleDate('month')} value={this.state.birthday.split('/')[0]}>
+                                <select className={this.state.birthday_border ? "required" : ""} onFocus={this.handleFocus("birthday")} onChange={this.handleDate('month')} value={this.state.birthday.split('/')[0]}>
                                     <option value='1' key='1' >Jan</option>
                                     <option value='2' key='2' >Feb</option>
                                     <option value='3' key='3' >Mar</option>
@@ -171,24 +191,25 @@ class Modal extends React.Component {
                                     <option value='11' key='11' >Nov</option>
                                     <option value='12' key='12' >Dec</option>
                                 </select>
-                                <select onFocus={this.handleFocus} onChange={this.handleDate('day')}  value={this.state.birthday.split('/')[1]}>
+                                <select className={this.state.birthday_border ? "required" : ""} onFocus={this.handleFocus("birthday")} onChange={this.handleDate('day')}  value={this.state.birthday.split('/')[1]}>
                                     {dayOptions}
                                 </select>
-                                <select onFocus={this.handleFocus} onChange={this.handleDate('year')} value={this.state.birthday.split('/')[2]}>
+                                <select className={this.state.birthday_border ? "required" : ""} onFocus={this.handleFocus("birthday")} onChange={this.handleDate('year')} value={this.state.birthday.split('/')[2]}>
                                     {yearOptions}
                                 </select>
                             </div>
                             <div className='sub'>
+                                {this.state.gender_error ? <ErrorTip error={"Gender can't be blank"} class={"left"}/> : ''}
                                 <label>Gender</label>
-                                <div onFocus={this.handleFocus} className="gender-container">
+                                <div onFocus={this.handleFocus("gender")} className={this.state.gender_border ? "required gender-container" : "gender-container"}>
                                     <label>Female</label>
                                     <input type="radio" name="gender" value="Female" checked={this.state.gender === "Female"} onChange={this.handleInput('gender')}/>
                                 </div>
-                                <div onFocus={this.handleFocus} className="gender-container">
+                                <div onFocus={this.handleFocus("gender")} className={this.state.gender_border ? "required gender-container" : "gender-container"}>
                                     <label>Male</label>
                                     <input type="radio" name="gender" value="Male" checked={this.state.gender === "Male"} onChange={this.handleInput('gender')}/>
                                 </div>
-                                <div onFocus={this.handleFocus} className="gender-container">
+                                <div onFocus={this.handleFocus("gender")} className={this.state.gender_border ? "required gender-container" : "gender-container"}>
                                     <label>Other</label>
                                     <input type="radio" name="gender" value="Other" checked={this.state.gender === "Other"} onChange={this.handleInput('gender')}/>
                                 </div>

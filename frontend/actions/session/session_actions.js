@@ -7,7 +7,7 @@ export const CLEAR_ERRORS = "CLEAR ERRORS";
 const receiveCurrentUser = (currentUser) => {
     return ({
         type: RECEIVE_CURRENT_USER,
-        currentUser, 
+        currentUser 
     });
 }
 
@@ -30,17 +30,17 @@ export const clearErrors = () => {
     })
 }
 
-export const login = (formUser) => (dispatch) => {
-    SessionAPIUtil.logIn(formUser)
-        .then((user) => (dispatch(receiveCurrentUser(user))), (errors) => (dispatch(receiveErrors(errors))));
-}
+export const login = (user) => (dispatch) => (
+    SessionAPIUtil.logIn(user)
+        .then((user) => (dispatch(receiveCurrentUser(user))), (errors) => (dispatch(receiveErrors(errors))))
+)
 
-export const logout = () => (dispatch) => {
+export const logout = () => (dispatch) => (
     SessionAPIUtil.logOut()
-        .then(() => (dispatch(logoutCurrentUser())), (errors) => (dispatch(receiveErrors(errors))));
-}
+        .then(() => (dispatch(logoutCurrentUser())), (errors) => (dispatch(receiveErrors(errors))))
+)
 
-export const signup = (formUser) => (dispatch) => {
-    SessionAPIUtil.signUp(formUser)
-        .then((user) => (dispatch(receiveCurrentUser(user))), (errors) => (dispatch(receiveErrors(errors))));
-}
+export const signup = (user) => (dispatch) => (
+    SessionAPIUtil.signUp(user)
+        .then((user) => (dispatch(receiveCurrentUser(user))), (errors) => (dispatch(receiveErrors(errors))))
+)
