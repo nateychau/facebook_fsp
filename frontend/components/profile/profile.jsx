@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import React from 'react';
 import Header from './header';
+import { Redirect } from 'react-router-dom'
 // import MainProfile from './main_profile';
 
 const mSTP = (state, ownProps) => {
@@ -10,7 +11,7 @@ const mSTP = (state, ownProps) => {
 }
 
 const Profile = (props) => (
-    <Header />
+    props.user ? <Header /> : <Redirect to="/" />
 )
 
 

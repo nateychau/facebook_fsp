@@ -78,7 +78,7 @@ class Modal extends React.Component {
         let err = `${id}_error`;
         let border = `${id}_border`;
         return() => {
-            if(this.state[id] === ""){
+            if(this.state[id] === "" || (id === "birthday" && this.state[id].split('/').some(el=>el==="0"))){
                 this.setState({[err]: false, [border]: true});
             }
         }
@@ -127,7 +127,7 @@ class Modal extends React.Component {
         return null;
         }
 
-        const errorArr = this.props.errors.signup.length ? this.props.errors.login.map((error) => {
+        const errorArr = this.props.errors.signup.length ? this.props.errors.signup.map((error) => {
             return (
                 <li>{error}</li>
             )
@@ -173,7 +173,7 @@ class Modal extends React.Component {
                             <div className='sub'>
                                 {this.state.birthday_error ? <ErrorTip error={"Birthday can't be blank"} class={"left"}/> : ''}
                                 <label>Birthday</label>
-                                <select className={this.state.birthday_border ? "required" : ""} onFocus={this.handleFocus("birthday")} onChange={this.handleDate('month')} value={this.state.birthday.split('/')[0]}>
+                                <select className={this.state.birthday_border ? "required" : ""} onFocus={this.handleFocus("birthday")} onBlur={this.handleRequired("birthday")} onChange={this.handleDate('month')} value={this.state.birthday.split('/')[0]}>
                                     <option value='1' key='1' >Jan</option>
                                     <option value='2' key='2' >Feb</option>
                                     <option value='3' key='3' >Mar</option>
@@ -187,10 +187,10 @@ class Modal extends React.Component {
                                     <option value='11' key='11' >Nov</option>
                                     <option value='12' key='12' >Dec</option>
                                 </select>
-                                <select className={this.state.birthday_border ? "required" : ""} onFocus={this.handleFocus("birthday")} onChange={this.handleDate('day')}  value={this.state.birthday.split('/')[1]}>
+                                <select className={this.state.birthday_border ? "required" : ""} onFocus={this.handleFocus("birthday")} onBlur={this.handleRequired("birthday")} onChange={this.handleDate('day')}  value={this.state.birthday.split('/')[1]}>
                                     {dayOptions}
                                 </select>
-                                <select className={this.state.birthday_border ? "required" : ""} onFocus={this.handleFocus("birthday")} onChange={this.handleDate('year')} value={this.state.birthday.split('/')[2]}>
+                                <select className={this.state.birthday_border ? "required" : ""} onFocus={this.handleFocus("birthday")} onBlur={this.handleRequired("birthday")} onChange={this.handleDate('year')} value={this.state.birthday.split('/')[2]}>
                                     {yearOptions}
                                 </select>
                             </div>
