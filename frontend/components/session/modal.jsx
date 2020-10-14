@@ -120,9 +120,6 @@ class Modal extends React.Component {
         this.props.clearErrors();
     }
 
-    // componentDidUpdate(){
-    //     const errorArr = this.props.errors.login.length ? this.props.errors.login : []
-    // }
 
     render(){
         console.log()
@@ -130,12 +127,11 @@ class Modal extends React.Component {
         return null;
         }
 
-        const errorArr = this.props.errors.login.length ? this.props.errors.login.map((error) => {
+        const errorArr = this.props.errors.signup.length ? this.props.errors.login.map((error) => {
             return (
                 <li>{error}</li>
             )
         }) : []
-
 
         const dayArr = Array.from(new Array(31), (x, i) => i + 1);
         const dayOptions = dayArr.map(day=>{

@@ -9,7 +9,9 @@ export default class LoginForm extends React.Component {
             email: ""
         };
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleInput = this.handleInput.bind(this)
+        this.handleInput = this.handleInput.bind(this);
+        this.loginDemo = this.loginDemo.bind(this);
+
     }
 
     handleSubmit(e){
@@ -26,6 +28,14 @@ export default class LoginForm extends React.Component {
 
     componentDidMount(){
         this.props.clearErrors();
+    }
+
+    loginDemo(){
+        let user = {
+            email: "demo@demo.demo",
+            password: "123456"
+        }
+        this.props.processForm(user);
     }
 
     render(){
@@ -64,6 +74,7 @@ export default class LoginForm extends React.Component {
                     </form>
                     <div className='line'/>
                     <button className="btn sign-up" onClick={this.props.openModal}>Create New Account</button>
+                    <button className="btn sign-up" onClick={this.loginDemo}>Demo User</button>
                 </div>
             </div>
         )
