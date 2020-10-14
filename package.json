@@ -8,8 +8,7 @@
     "test": "test"
   },
   "scripts": {
-    "postinstall": "webpack",
-    "start": "webpack --watch --mode=development"
+    "postinstall": "webpack"
   },
   "repository": {
     "type": "git",
