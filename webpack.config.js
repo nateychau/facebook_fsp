@@ -23,5 +23,7 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js', '.jsx', '*']
-  }
+  },
+  watch: process.env.NODE_ENV !== "production" ? true : false, 
+  watchOptions: { poll: process.env.NODE_ENV !== "production" ? true : false }
 }

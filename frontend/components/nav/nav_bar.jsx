@@ -17,7 +17,7 @@ export default class Greeting extends React.Component {
                 <div className="nav-left">
                     <Link to="/"><button className="btn">Logo</button></Link>
                 </div>
-                <Link to="/"><button className="btn">Placeholder</button></Link>
+                {/* <Link to="/"><button className="btn">Placeholder</button></Link> */}
                 <div className="nav-right">
                 <Link to={`/users/${this.props.currentUser.id}`}><button className="btn profile">{this.props.currentUser.first_name}</button></Link>
                     <button className="btn" onClick={this.handleLogout}>Logout</button>

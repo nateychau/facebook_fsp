@@ -77,7 +77,7 @@ class Modal extends React.Component {
     handleRequired(id){
         let err = `${id}_error`;
         let border = `${id}_border`;
-        return() => {
+        return () => {
             if(this.state[id] === "" || (id === "birthday" && this.state[id].split('/').some(el=>el==="0"))){
                 this.setState({[err]: false, [border]: true});
             }
@@ -123,7 +123,7 @@ class Modal extends React.Component {
 
     render(){
         console.log()
-        if (!this.props.modal) {
+        if (this.props.modal !== 'signup') {
         return null;
         }
 

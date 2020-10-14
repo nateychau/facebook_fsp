@@ -13,7 +13,7 @@ class MainProfile extends React.Component{
 
     render(){
         return(
-            <div className="main-profile-container">
+            <div className="profile-thumb-container">
                 <h2>{`${this.props.user.first_name} ${this.props.user.last_name}`}</h2>
             </div>
         )

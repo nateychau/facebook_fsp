@@ -1,6 +1,14 @@
 import React from 'react';
-import MainProfile from './main_profile';
+import ProfileThumb from './profile_thumb';
+import CoverPhoto from './cover_photo';
+import ProfileNav from './profile-nav';
 
 export default () => (
-    <MainProfile />
+    <div className="profile-header">
+        <CoverPhoto />
+        <div className="transparent"></div>
+        <ProfileThumb />
+        <ProfileNav />
+        
+    </div>
 )
