@@ -49,6 +49,7 @@ class Modal extends React.Component {
         this.handleDate = this.handleDate.bind(this);
         this.handleRequired = this.handleRequired.bind(this);
         this.handleFocus = this.handleFocus.bind(this);
+        this.handleModalClose = this.handleModalClose.bind(this);
     }
 
     handleSubmit(e){
@@ -62,7 +63,7 @@ class Modal extends React.Component {
                 }
             })
         }else{
-            this.props.processForm(user).then(this.props.closeModal);
+            this.props.processForm(user).then(this.handleModalClose);
         }
     }
 
@@ -120,11 +121,35 @@ class Modal extends React.Component {
         this.props.clearErrors();
     }
 
+    handleModalClose(){
+        this.props.clearErrors();
+        this.props.closeModal();
+        this.setState({
+            first_name: "",
+            first_name_error: false,
+            first_name_border: false,
+            last_name: "",
+            last_name_error: false,
+            last_name_border: false,
+            birthday: "0/0/0",
+            birthday_error: false,
+            birthday_border: false,
+            gender: "",
+            gender_error: false,
+            gender_border: false,
+            password: "",
+            password_error: false,
+            password_border: false,
+            email: "",
+            email_error: false,
+            email_border: false,
+        })
+    }
+
 
     render(){
-        console.log()
         if (this.props.modal !== 'signup') {
-        return null;
+            return null;
         }
 
         const errorArr = this.props.errors.signup.length ? this.props.errors.signup.map((error) => {
@@ -142,10 +167,10 @@ class Modal extends React.Component {
             return <option value={year} key={year}>{year}</option>
         }); 
         return (
-            <div className="modal-background" onClick={() => {this.props.clearErrors(); this.props.closeModal();}}>
+            <div className="modal-background" onClick={this.handleModalClose}>
                 <div className="modal-child" onClick={e => e.stopPropagation()}>
                     <div className="modal-form">
-                        <div className="x" onClick={() => {this.props.clearErrors(); this.props.closeModal();}}>&#10006;</div>
+                        <div className="x" onClick={this.handleModalClose}>&#10006;</div>
                         <div className="sign-up-text">
                             <h2>Sign Up</h2>
                             <p>It's quick and easy.</p>
