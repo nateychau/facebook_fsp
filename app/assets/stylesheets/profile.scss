@@ -8,3 +8,18 @@
     z-index: -99;
     flex-wrap: wrap;
 }
+
+.profile-main{
+    width: 892px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.profile-scroll{
+    width: 500px;
+}
+
+.profile-sticky{
+    width: 360px;
+    position: sticky;
+}

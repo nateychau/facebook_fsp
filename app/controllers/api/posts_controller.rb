@@ -10,8 +10,12 @@ class Api::PostsController < ApplicationController
 
     def destroy
         @post = Post.find_by(id: params[:id])
-        @post.destroy
-        render :show 
+        if @post
+            @post.destroy
+            render :show
+        else
+            render json:  ['Unable to find post with that ID'], status: 404
+        end
     end
 
     def update
@@ -25,8 +29,28 @@ class Api::PostsController < ApplicationController
 
     def index
         #COME BACK TO THIS TO ADD FILTERING
-        @posts = Post.all 
+        if wall_id
+            @posts = Post.find_by(wall_id: wall_id)
+        #UNCOMMENT AFTER ADDING FRIENDS TABLE AND ASSOCIATIONS
+        # elsif user_id 
+        #     current_user = User.find(user_id)
+        #     friend_id_array = current_user.friends.map do |friend|
+        #         friend.id
+        #     end
+        #     @posts = Post.where(author_id: friend_id_array)
+        else
+            @posts = Post.all
+        end 
         render :index
+    end
+
+    def wall_id
+        params[:wallId]
+    end
+
+    # use userId and wallId as key when calling update filter method in components
+    def user_id
+        params[:userId]
     end
 
 

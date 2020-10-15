@@ -20,7 +20,7 @@ const logoutCurrentUser = () => {
     });
 }
 
-const receiveErrors = (errors) => {
+export const receiveErrors = (errors) => {
     return ({
         type: RECEIVE_ERRORS,
         errors: errors.responseJSON
