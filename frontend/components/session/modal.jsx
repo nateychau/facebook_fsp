@@ -50,10 +50,16 @@ class Modal extends React.Component {
         this.handleRequired = this.handleRequired.bind(this);
         this.handleFocus = this.handleFocus.bind(this);
         this.handleModalClose = this.handleModalClose.bind(this);
+        this.first_name = React.createRef();
+        this.last_name = React.createRef();
+        this.email = React.createRef();
+        this.password = React.createRef();
+
     }
 
     handleSubmit(e){
         e.preventDefault();
+        this.props.clearErrors();
         const user = Object.assign({}, this.state);
         if(Object.values(this.state).some(val => val === "") || this.state.birthday === "0/0/0"){
             let firstErr = true;
@@ -65,6 +71,18 @@ class Modal extends React.Component {
                     if(firstErr){
                         this.setState({[err]:true})
                         firstErr = false;
+                        if(key==="first_name"){
+                            this.first_name.current.focus();
+                        }
+                        else if(key==="last_name"){
+                            this.last_name.current.focus();
+                        }
+                        else if(key==="email"){
+                            this.email.current.focus();
+                        }
+                        else if(key==="password"){
+                            this.password.current.focus();
+                        }
                     }
                 }
             })
@@ -90,6 +108,7 @@ class Modal extends React.Component {
             }
         }
     }
+
 
     handleFocus(id){
         let err = `${id}_error`;
@@ -194,19 +213,19 @@ class Modal extends React.Component {
                         : <></>}
                             <div className="small">
                                 {this.state.first_name_error ? <ErrorTip error={"First name can't be blank"} class={"left"}/> : ''}
-                                <input id="first_name" className={this.state.first_name_border ? "required" : ""} onFocus={this.handleFocus("first_name")} onBlur={this.handleRequired("first_name")} type="text" onChange={this.handleInput('first_name')} value={this.state.first_name} placeholder="First Name"></input>
+                                <input autoFocus ref={this.first_name} className={this.state.first_name_border ? "required" : ""} onFocus={this.handleFocus("first_name")} onBlur={this.handleRequired("first_name")} type="text" onChange={this.handleInput('first_name')} value={this.state.first_name} placeholder="First Name"></input>
                                 {this.state.last_name_error ? <ErrorTip error={"Last name can't be blank"} class={"bottom"}/> : ''}
-                                <input id="last_name" className={this.state.last_name_border ? "required" : ""} onFocus={this.handleFocus("last_name")} onBlur={this.handleRequired("last_name")} type="text" onChange={this.handleInput('last_name')} value={this.state.last_name} placeholder="Last Name"></input>
+                                <input ref={this.last_name} className={this.state.last_name_border ? "required" : ""} onFocus={this.handleFocus("last_name")} onBlur={this.handleRequired("last_name")} type="text" onChange={this.handleInput('last_name')} value={this.state.last_name} placeholder="Last Name"></input>
                             </div>
                             {/* <div className="small">
                             </div> */}
                             <div>
                                 {this.state.email_error ? <ErrorTip error={"Email can't be blank"} class={"left"}/> : ''}
-                                <input id="email" className={this.state.email_border ? "required" : ""} onFocus={this.handleFocus("email")} onBlur={this.handleRequired("email")} type="text" onChange={this.handleInput('email')} value={this.state.email} placeholder="Email"></input>
+                                <input ref={this.email} className={this.state.email_border ? "required" : ""} onFocus={this.handleFocus("email")} onBlur={this.handleRequired("email")} type="text" onChange={this.handleInput('email')} value={this.state.email} placeholder="Email"></input>
                             </div>
                             <div>
                                 {this.state.password_error ? <ErrorTip error={"Password can't be blank"} class={"left"}/> : ''}
-                                <input id="password" className={this.state.password_border ? "required" : ""} onFocus={this.handleFocus("password")} onBlur={this.handleRequired("password")} type="password" onChange={this.handleInput('password')} value={this.state.password} placeholder="Password"></input>
+                                <input ref={this.password} className={this.state.password_border ? "required" : ""} onFocus={this.handleFocus("password")} onBlur={this.handleRequired("password")} type="password" onChange={this.handleInput('password')} value={this.state.password} placeholder="Password"></input>
                             </div>
                             <div className='sub'>
                                 {this.state.birthday_error ? <ErrorTip error={"Birthday can't be blank"} class={"left"}/> : ''}
