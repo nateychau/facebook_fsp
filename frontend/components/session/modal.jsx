@@ -31,18 +31,18 @@ class Modal extends React.Component {
             last_name: "",
             last_name_error: false,
             last_name_border: false,
+            email: "",
+            email_error: false,
+            email_border: false,
+            password: "",
+            password_error: false,
+            password_border: false,
             birthday: "0/0/0",
             birthday_error: false,
             birthday_border: false,
             gender: "",
             gender_error: false,
             gender_border: false,
-            password: "",
-            password_error: false,
-            password_border: false,
-            email: "",
-            email_error: false,
-            email_border: false,
         };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleInput = this.handleInput.bind(this);
@@ -56,10 +56,16 @@ class Modal extends React.Component {
         e.preventDefault();
         const user = Object.assign({}, this.state);
         if(Object.values(this.state).some(val => val === "") || this.state.birthday === "0/0/0"){
+            let firstErr = true;
             Object.keys(this.state).forEach(key=>{
                 if(this.state[key] === "" || (key === "birthday" && this.state.birthday === "0/0/0")){
                     let border = `${key}_border`;
+                    let err = `${key}_error`
                     this.setState({[border]:true});
+                    if(firstErr){
+                        this.setState({[err]:true})
+                        firstErr = false;
+                    }
                 }
             })
         }else{
@@ -89,6 +95,13 @@ class Modal extends React.Component {
         let err = `${id}_error`;
         let border = `${id}_border`;
         return (e) =>{
+            this.setState({
+                first_name_error: false, 
+                last_name_error: false,
+                email_error: false,
+                password_error: false,
+                birthday_error: false,
+                gender_error: false,})
             if(this.state[border]){
                 this.setState({[border]: false, [err]: true})
             }
@@ -199,6 +212,7 @@ class Modal extends React.Component {
                                 {this.state.birthday_error ? <ErrorTip error={"Birthday can't be blank"} class={"left"}/> : ''}
                                 <label>Birthday</label>
                                 <select className={this.state.birthday_border ? "required" : ""} onFocus={this.handleFocus("birthday")} onBlur={this.handleRequired("birthday")} onChange={this.handleDate('month')} value={this.state.birthday.split('/')[0]}>
+                                    <option value='0' key='0' disabled>Month</option>
                                     <option value='1' key='1' >Jan</option>
                                     <option value='2' key='2' >Feb</option>
                                     <option value='3' key='3' >Mar</option>
@@ -213,9 +227,11 @@ class Modal extends React.Component {
                                     <option value='12' key='12' >Dec</option>
                                 </select>
                                 <select className={this.state.birthday_border ? "required" : ""} onFocus={this.handleFocus("birthday")} onBlur={this.handleRequired("birthday")} onChange={this.handleDate('day')}  value={this.state.birthday.split('/')[1]}>
+                                    <option value='0' key='0' disabled>Day</option>
                                     {dayOptions}
                                 </select>
                                 <select className={this.state.birthday_border ? "required" : ""} onFocus={this.handleFocus("birthday")} onBlur={this.handleRequired("birthday")} onChange={this.handleDate('year')} value={this.state.birthday.split('/')[2]}>
+                                    <option value='0' key='0' disabled>Year</option>
                                     {yearOptions}
                                 </select>
                             </div>
