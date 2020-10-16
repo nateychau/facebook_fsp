@@ -30,7 +30,7 @@ class Api::PostsController < ApplicationController
     def index
         #COME BACK TO THIS TO ADD FILTERING
         if wall_id
-            @posts = Post.find_by(wall_id: wall_id)
+            @posts = Post.where("wall_id = #{wall_id}").order("created_at DESC")
         #UNCOMMENT AFTER ADDING FRIENDS TABLE AND ASSOCIATIONS
         # elsif user_id 
         #     current_user = User.find(user_id)
@@ -45,12 +45,12 @@ class Api::PostsController < ApplicationController
     end
 
     def wall_id
-        params[:wallId]
+        params[:wallId].to_i
     end
 
     # use userId and wallId as key when calling update filter method in components
     def user_id
-        params[:userId]
+        params[:userId].to_i
     end
 
 

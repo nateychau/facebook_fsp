@@ -2,6 +2,7 @@ import {
     RECEIVE_ALL_POSTS,
     RECEIVE_POST,
     DELETE_POST,
+    CLEAR_POSTS
  } from '../../actions/post_actions';
 
 export const postReducer = (state = {}, action) => {
@@ -19,6 +20,8 @@ export const postReducer = (state = {}, action) => {
         case DELETE_POST:
             newState[action.post.id] = undefined;
             return newState;
+        case CLEAR_POSTS:
+            return {};
         default:
             return state
     }

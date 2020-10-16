@@ -1,9 +1,10 @@
 import * as PostAPIUtil from '../util/post_api_util';
 import { receiveErrors } from './session/session_actions'
+
 export const RECEIVE_POST = "RECEIVE_POST";
 export const RECEIVE_ALL_POSTS = "RECEIVE_ALL_POSTS";
 export const DELETE_POST = "DELETE_POST";
-
+export const CLEAR_POSTS = "CLEAR_POSTS"
 
 const receivePost = (post) => {
     return ({
@@ -23,6 +24,12 @@ const deletePostObj = (post) => {
     return ({
         type: DELETE_POST,
         post
+    })
+}
+
+export const clearPosts = () => {
+    return ({
+        type: CLEAR_POSTS
     })
 }
 
@@ -57,9 +64,9 @@ export const editPost = (post) => (dispatch) => {
     )
 }
 
-export const getPosts = () => (dispatch) => {
+export const getPosts = (filter) => (dispatch) => {
     return (
-        PostAPIUtil.getPosts()
+        PostAPIUtil.getPosts(filter)
             .then(
                 posts => dispatch(receiveAllPosts(posts)),
                 err => dispatch(receiveErrors(err))

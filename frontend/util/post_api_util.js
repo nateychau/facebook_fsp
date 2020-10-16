@@ -27,11 +27,12 @@ export const editPost = post => {
     )
 }
 
-export const getPosts = () => {
+export const getPosts = (data) => {
     return (
         $.ajax({
             url: '/api/posts',
-            method: 'GET'
+            method: 'GET',
+            data
         })
     )
 }

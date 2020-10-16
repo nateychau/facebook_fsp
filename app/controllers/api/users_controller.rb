@@ -10,8 +10,21 @@ class Api::UsersController < ApplicationController
     end
 
     def show 
-        @user = User.find(params[:id])
-        render :show 
+        @user = User.find_by(id: params[:id])
+        if @user 
+            render :show
+        else
+            render json: ["User does not exist"], status: 404
+        end
+    end
+
+    def index 
+        @users = author_id_arr ? User.where({id: author_id_arr}) : User.all
+        render :index
+    end
+
+    def author_id_arr 
+        params[:idArr]
     end
 
     def user_params 

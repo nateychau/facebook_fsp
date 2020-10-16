@@ -24,8 +24,6 @@ class PostModal extends React.Component{
     constructor(props){
         super(props)
         this.state = {
-            author_id: this.props.currentUser.id,
-            wall_id: this.props.wallUser.id,
             body: ""
         }
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -35,15 +33,17 @@ class PostModal extends React.Component{
 
     handleSubmit(e){
         e.preventDefault();
-        let post = Object.assign({}, this.state);
+        let post = {
+            body: this.state.body, 
+            author_id: this.props.currentUser.id, 
+            wall_id: this.props.wallUser.id
+        };
         this.props.processForm(post).then(this.handleModalClose);
     }
 
     handleModalClose(){
         this.props.closeModal();
         this.setState({
-            author_id: this.props.currentUser.id,
-            wall_id: this.props.wallUser.id,
             body: ""
         });
     }
@@ -56,13 +56,25 @@ class PostModal extends React.Component{
         if (this.props.modal !== 'post'){
             return null;
         }
+
+        let placeholder;
+        if(this.props.wallUser){
+            if(this.props.wallUser.id === this.props.currentUser.id){
+                placeholder = "What's on your mind?";
+            }else{
+                placeholder = `Write something to ${this.props.wallUser.first_name}`;
+            }
+        }else{
+            placeholder = `What's on your mind, ${this.props.currentUser.first_name}?`
+        }
+
         return (
             <div className="modal-background" onClick={this.props.closeModal}>
                 <div className="modal-child" onClick={e => e.stopPropagation()}>
                     <h2>Create Post</h2>
                     <div className="author-bar">{`${this.props.currentUser.first_name} ${this.props.currentUser.last_name}`}</div>
                     <form>
-                        <input type="text" placeholder="What's on your mind?" value={this.state.body} onChange={this.handleInput}></input>
+                        <input type="text" placeholder={placeholder} value={this.state.body} onChange={this.handleInput}></input>
                         <button onClick={this.handleSubmit}>Post</button>
                     </form>
                 </div>
