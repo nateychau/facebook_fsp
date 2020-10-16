@@ -35,13 +35,13 @@ class Wall extends React.Component{
     //NEED TO ADD LOGIC SO THAT NOT FETCHING ALL USERS EVERYTIME
     componentDidMount(){
         this.props.updateFilter(this.props.wallUser.id)
-            .then(this.props.getUsers(this.mapAuthorIds()));
+            // .then(this.props.getUsers(this.mapAuthorIds()));
     }
 
     componentDidUpdate(prevProps){
         if(this.props.wallUser.id !== prevProps.wallUser.id){
             this.props.updateFilter(this.props.wallUser.id)
-                .then(this.props.getUsers(this.mapAuthorIds()));
+                // .then(this.props.getUsers(this.mapAuthorIds()));
         }
     }
 
