@@ -56,13 +56,19 @@ class Profile extends React.Component{
                         {/* <PostModal /> */}
                         <Header />
                         <div className="profile-main">
-                            <div className="profile-sticky">
+                            {/* for left side sticky elements */}
+                            <div className="profile-sticky"> 
                                 <h2>Intro</h2>
                                 <h4>{this.props.user.bio}</h4>
                             </div>
+                            {/* for right side scroll elements */}
                             <div className="profile-scroll">
-
-                                <PostButton />
+                                <div className="post-button-container">
+                                    <div className="prof-pic-thumb-small">
+                                        <img src={window.testProfile}></img>
+                                    </div>
+                                    <PostButton />
+                                </div>
                                 <Wall />
                             </div>
                         </div>
