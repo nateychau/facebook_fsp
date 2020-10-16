@@ -2,10 +2,10 @@
     display: flex;
     justify-content: center;
     width: 100%;
-    top: -50px;
-    position: absolute;
+    top: -100px; //was -50 before adjusting element layering
+    position: relative;
     background: #ffffff;
-    z-index: -99;
+    z-index: 1;
     flex-wrap: wrap;
 }
 

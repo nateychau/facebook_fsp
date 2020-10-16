@@ -33,6 +33,8 @@ class Profile extends React.Component{
         }
 
         componentDidUpdate(prevProps){
+            // console.log('component updated')
+            // console.log(this.props)
             if(this.props.match.params.userId !== prevProps.match.params.userId){
                 this.props.getUser(this.props.match.params.userId)
             }
@@ -50,8 +52,8 @@ class Profile extends React.Component{
                 return null
             } else {
                 return (
-                        <div className='profile-page'>
-                        <PostModal />
+                    <div className='profile-page'>
+                        {/* <PostModal /> */}
                         <Header />
                         <div className="profile-main">
                             <div className="profile-sticky">

@@ -3,6 +3,7 @@ import { publishPost } from '../../actions/post_actions';
 import { closeModal } from '../../actions/modal_actions'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { getUser } from '../../actions/user_actions';
 
 const mSTP = (state, ownProps) => {
     return {
@@ -16,6 +17,7 @@ const mSTP = (state, ownProps) => {
 const mDTP = dispatch => {
     return {
         closeModal: () => dispatch(closeModal()),
+        getUser: (id) => dispatch(getUser(id)),
         processForm: (post) => dispatch(publishPost(post)), 
     }
 }
@@ -27,7 +29,7 @@ class PostModal extends React.Component{
             body: ""
         }
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleModalClose = this.handleModalClose.bind(this);
+        this.handlePostSubmit = this.handlePostSubmit.bind(this);
         this.handleInput = this.handleInput.bind(this);
     }
 
@@ -38,10 +40,15 @@ class PostModal extends React.Component{
             author_id: this.props.currentUser.id, 
             wall_id: this.props.wallUser.id
         };
-        this.props.processForm(post).then(this.handleModalClose);
+        this.props.processForm(post).then(this.handlePostSubmit);
     }
 
-    handleModalClose(){
+    // componentDidUpdate(){
+    //     console.log('component updated')
+    //     console.log(this.props)
+    // }
+
+    handlePostSubmit(){
         this.props.closeModal();
         this.setState({
             body: ""
@@ -56,8 +63,8 @@ class PostModal extends React.Component{
         if (this.props.modal !== 'post'){
             return null;
         }
-
         let placeholder;
+
         if(this.props.wallUser){
             if(this.props.wallUser.id === this.props.currentUser.id){
                 placeholder = "What's on your mind?";
@@ -67,16 +74,18 @@ class PostModal extends React.Component{
         }else{
             placeholder = `What's on your mind, ${this.props.currentUser.first_name}?`
         }
-
         return (
             <div className="modal-background" onClick={this.props.closeModal}>
                 <div className="modal-child" onClick={e => e.stopPropagation()}>
-                    <h2>Create Post</h2>
-                    <div className="author-bar">{`${this.props.currentUser.first_name} ${this.props.currentUser.last_name}`}</div>
-                    <form>
-                        <input type="text" placeholder={placeholder} value={this.state.body} onChange={this.handleInput}></input>
-                        <button onClick={this.handleSubmit}>Post</button>
-                    </form>
+                    <div className="post-modal">
+                        <div className="x post-x" onClick={this.props.closeModal}>&#10006;</div>
+                        <h2>Create Post</h2>
+                        <div className="author-bar">{`${this.props.currentUser.first_name} ${this.props.currentUser.last_name}`}</div>
+                        <form>
+                            <textarea placeholder={placeholder} value={this.state.body} onChange={this.handleInput}></textarea>
+                        </form>
+                        <button disabled={this.state.body.length ? false: true} onClick={this.handleSubmit}>Post</button>
+                    </div>
                 </div>
             </div>
         )

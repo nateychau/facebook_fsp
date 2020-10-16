@@ -6,11 +6,13 @@ import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import Feed from './feed'
 import Modal from './session/modal'
 import Profile from './profile/profile'
+import PostModal from './posts/post_modal'
 
 const App = () => (
-  <div>
+  <div className='app'>
 
     <Modal/>
+    <ProtectedRoute path="/users/:userId" component={PostModal} />
     <AuthRoute exact path="/" component={LoginFormContainer}/>
     <ProtectedRoute path="/" component={Navbar}/>
     <Switch>
