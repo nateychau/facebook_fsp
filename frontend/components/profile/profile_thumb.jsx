@@ -14,6 +14,9 @@ class MainProfile extends React.Component{
     render(){
         return(
             <div className="profile-thumb-container">
+                <div className="prof-pic">
+                    <img src={window.testProfile}></img>
+                </div>
                 <h2>{`${this.props.user.first_name} ${this.props.user.last_name}`}</h2>
             </div>
         )

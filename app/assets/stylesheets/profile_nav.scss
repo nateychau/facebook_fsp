@@ -1,0 +1,81 @@
+.profile-nav-container{
+    z-index: 2;
+    height: 60px;
+    background: #fff;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.profile-nav-bar{
+    border-top: 1px solid #d8dadd;
+    width: 876px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profile-nav-links{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-nav-links div{
+    display: flex;
+    align-items: center;
+    height: 59px;
+    // font-weight: 600;
+    // font-size: .9375rem;
+    // line-height: 1.3333;
+    // color: #959699;
+    // text-decoration: none;
+}
+
+.profile-nav-links div p{
+    padding: 5px 15px;
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    font-size: .9350rem;
+    line-height: 1.3333;
+    color: #65676b;
+    text-decoration: none;
+    border-radius: 8px;
+    height: 45px;
+}
+
+.profile-nav-links div:hover p{
+    background-color: #f0f2f5;
+    cursor: pointer
+}
+
+//REPLACE 'FIRST-CHILD' WITH LOGIC FOR ACTIVE LINK (NAVLINK PROBABLY WONT WORK)
+.profile-nav-links div:first-child p{
+    color: #1876f2;
+    border-bottom: 3.5px solid #1876f2;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.profile-nav-links div:first-child:hover p{
+    background-color: #fff;
+}
+
+.profile-nav-button{
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    font-size: .9375rem;
+    line-height: 1.3333;
+    border-radius: 6px;
+    background-color: #e4e6eb;
+    color: #0f0f0f;
+    border: none;
+    padding: 10px 8px;
+}
+
+.profile-nav-button:hover{
+    cursor: pointer;
+    background-color: #959699;
+}

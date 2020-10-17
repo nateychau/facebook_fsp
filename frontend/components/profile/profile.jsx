@@ -58,8 +58,13 @@ class Profile extends React.Component{
                         <div className="profile-main">
                             {/* for left side sticky elements */}
                             <div className="profile-sticky"> 
-                                <h2>Intro</h2>
-                                <h4>{this.props.user.bio}</h4>
+                                <div className="profile-intro">
+                                    <div>Intro</div>
+                                    <div>Studied at: {this.props.user.school}</div>
+                                    <div>Lives in: {this.props.user.location}</div>
+                                    <div>Born on: {this.props.user.birthday}</div>
+                                    <div>Bio: {this.props.user.bio}</div>
+                                </div>
                             </div>
                             {/* for right side scroll elements */}
                             <div className="profile-scroll">

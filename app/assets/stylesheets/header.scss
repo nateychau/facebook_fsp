@@ -8,6 +8,7 @@
     width: 100%;
     z-index: -2;
     background: #fff;
+    box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.1);
 }
 
 .cover-photo-container{
@@ -31,15 +32,10 @@
     border: 1px solid #fff;
 }
 
-.profile-nav{
-    z-index: 2;
-    height: 60px;
-    background: #fff;
-    width: 100%;
-}
 
 .profile-thumb-container{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 98px;
@@ -53,4 +49,20 @@
     font-size: 2rem;
     font-weight: 700;
     line-height: 1.1875;
+}
+
+.prof-pic img{
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid #fff;
+}
+
+
+.prof-pic{
+    width: 168px;
+    height: 168px;
+    position: absolute;
+    top: 300px;
 }

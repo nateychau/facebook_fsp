@@ -10,7 +10,8 @@
 }
 
 .profile-main{
-    width: 892px;
+    // width: 892px;
+    width: 876px;
     display: flex;
     justify-content: space-between;
     padding-top: 10px;
@@ -19,21 +20,54 @@
 }
 
 .profile-scroll{
-    // width: 500px;
+    width: 500px;
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
-    flex-grow: 1;
+    // flex-grow: 1;
 }
 
 .profile-sticky{
     width: 360px;
     position: sticky;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
+
+.profile-intro{
+    width: 340px;
+    display: flex;
+    flex-direction: column; 
+    flex-wrap: wrap;
+    // padding: 5px 5px;
+    background: #fff;
+    border-radius: 8px;
+    padding: 12px 10px 16px;
+    margin-top: 5px;
+    box-shadow: 0 0.3px 0.3px rgba(0, 0, 0, 0.1), 0 2px 10px rgba(0, 0, 0, 0.1)
+}
+
+.profile-intro div:first-child{
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.2;
+    padding-top: 0px;
+    color: black;
+}
+
+.profile-intro div{
+    padding-top: 10px;
+    font-weight: normal;
+    font-size: .9375rem;
+    line-height: 1.3333;
+    color:#757474;
+}
+
 
 .post-button-container{
     background: #fff;
-    width: 100%;
+    width: 96%;
     padding: 12px 10px 16px;
     display: flex;
     margin: 5px 0px;
