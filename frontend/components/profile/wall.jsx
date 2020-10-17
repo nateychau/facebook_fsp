@@ -74,7 +74,10 @@ class Wall extends React.Component{
         }) : [];
         return (
             <div className="wall-container">
-                <ul>
+                <div className="wall-header">
+                    Posts
+                </div>
+                <ul className="post-list">
                     {postArr}
                 </ul>
             </div>

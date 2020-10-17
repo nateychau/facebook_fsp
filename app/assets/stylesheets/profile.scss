@@ -4,7 +4,7 @@
     width: 100%;
     top: -100px; //was -50 before adjusting element layering
     position: relative;
-    background: #ffffff;
+    background: #f0f2f5;
     z-index: 1;
     flex-wrap: wrap;
 }
@@ -13,10 +13,17 @@
     width: 892px;
     display: flex;
     justify-content: space-between;
+    padding-top: 10px;
+    padding-right: 16px;
+    padding-left: 16px;
 }
 
 .profile-scroll{
-    width: 500px;
+    // width: 500px;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    flex-grow: 1;
 }
 
 .profile-sticky{
@@ -25,12 +32,13 @@
 }
 
 .post-button-container{
-    width: 500px;
+    background: #fff;
+    width: 100%;
     padding: 12px 10px 16px;
     display: flex;
-    margin: 5px 3px;
+    margin: 5px 0px;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
+    box-shadow: 0 0.3px 0.3px rgba(0, 0, 0, 0.1), 0 2px 10px rgba(0, 0, 0, 0.1)
 }
 
 .prof-pic-thumb-small{
