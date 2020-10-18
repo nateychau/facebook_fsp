@@ -2,11 +2,12 @@ import { connect } from 'react-redux';
 import React from 'react';
 import Header from './header';
 import { Redirect } from 'react-router-dom'
-import Wall from './wall';
-import PostModal from '../posts/post_modal';
-import PostButton from '../posts/post_button';
 import { getUser } from '../../actions/user_actions';
 import { clearErrors } from '../../actions/session/session_actions'
+import About from './about';
+import Friends from './friends';
+import Photos from './photos';
+import Timeline from './timeline';
 // import MainProfile from './main_profile';
 
 const mSTP = (state, ownProps) => {
@@ -26,6 +27,10 @@ const mDTP = (dispatch, ownProps) => {
 class Profile extends React.Component{
         constructor(props){
             super(props)
+            this.state = {
+                page: 'timeline'
+            }
+            this.handlePageToRender = this.handlePageToRender.bind(this);
         }
 
         componentDidMount(){
@@ -40,11 +45,29 @@ class Profile extends React.Component{
             }
         }
 
+        handlePageToRender(type){
+            return (e) => {
+                this.setState({page: type});
+            }
+        }
+
         componentWillUnmount(){
             this.props.clearErrors();
         }
 
         render(){
+            let renderedPage;
+            if(this.state.page === 'timeline'){
+                renderedPage = <Timeline user={this.props.user} />
+            }
+            else if(this.state.page === 'about'){
+                renderedPage = <About user={this.props.user} /> 
+            } else if(this.state.page === 'friends'){
+                renderedPage = <Friends user={this.props.user} />
+            }else if(this.state.page === 'photos'){
+                renderedPage = <Photos user={this.props.user} />
+            }
+
             if(this.props.errors.length){
                 return <Redirect to="/" />
             }
@@ -53,29 +76,20 @@ class Profile extends React.Component{
             } else {
                 return (
                     <div className='profile-page'>
-                        {/* <PostModal /> */}
                         <Header />
+                        <div className="profile-nav-container">
+                            <div className="profile-nav-bar">
+                                <div className="profile-nav-links">
+                                    <div className={this.state.page === 'timeline' ? 'active-profile-page' : ''}onClick={this.handlePageToRender('timeline')}><p>Timeline</p></div>
+                                    <div className={this.state.page === 'about' ? 'active-profile-page' : ''}onClick={this.handlePageToRender('about')}><p>About</p></div>
+                                    <div className={this.state.page === 'friends' ? 'active-profile-page' : ''}onClick={this.handlePageToRender('friends')}><p>Friends</p></div>
+                                    <div className={this.state.page === 'photos' ? 'active-profile-page' : ''}onClick={this.handlePageToRender('photos')}><p>Photos</p></div>
+                                </div>
+                                <button className="profile-nav-button">Edit Profile</button>
+                            </div>
+                        </div>
                         <div className="profile-main">
-                            {/* for left side sticky elements */}
-                            <div className="profile-sticky"> 
-                                <div className="profile-intro">
-                                    <div>Intro</div>
-                                    <div>Studied at: {this.props.user.school}</div>
-                                    <div>Lives in: {this.props.user.location}</div>
-                                    <div>Born on: {this.props.user.birthday}</div>
-                                    <div>Bio: {this.props.user.bio}</div>
-                                </div>
-                            </div>
-                            {/* for right side scroll elements */}
-                            <div className="profile-scroll">
-                                <div className="post-button-container">
-                                    <div className="prof-pic-thumb-small">
-                                        <img src={window.testProfile}></img>
-                                    </div>
-                                    <PostButton />
-                                </div>
-                                <Wall />
-                            </div>
+                            {renderedPage}
                         </div>
                     </div>
                 )

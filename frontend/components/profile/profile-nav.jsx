@@ -1,3 +1,5 @@
+//THIS FILE IS DEPRECATED - ALL CODE MOVED TO MAIN PROFILE PAGE
+
 import React from 'react';
 import { NavLink, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';

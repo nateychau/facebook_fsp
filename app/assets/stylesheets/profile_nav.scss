@@ -51,14 +51,25 @@
 }
 
 //REPLACE 'FIRST-CHILD' WITH LOGIC FOR ACTIVE LINK (NAVLINK PROBABLY WONT WORK)
-.profile-nav-links div:first-child p{
+// .profile-nav-links div:first-child p{
+//     color: #1876f2;
+//     border-bottom: 3.5px solid #1876f2;
+//     border-bottom-left-radius: 0;
+//     border-bottom-right-radius: 0;
+// }
+
+// .profile-nav-links div:first-child:hover p{
+//     background-color: #fff;
+// }
+
+.profile-nav-links div.active-profile-page p{
     color: #1876f2;
     border-bottom: 3.5px solid #1876f2;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
 }
 
-.profile-nav-links div:first-child:hover p{
+.profile-nav-links div.active-profile-page:hover p{
     background-color: #fff;
 }
 

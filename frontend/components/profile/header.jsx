@@ -8,7 +8,7 @@ export default () => (
         <CoverPhoto />
         <div className="transparent"></div>
         <ProfileThumb />
-        <ProfileNav />
+        {/* <ProfileNav /> */}
         
     </div>
 )
