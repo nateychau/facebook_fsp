@@ -1,23 +1,33 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { openModal } from '../../actions/modal_actions';
+import { updateUser, getUser } from '../../actions/user_actions';
 
-// const mSTP = (state, ownProps) => ({
-//     user: state.entities.users[ownProps.match.params.userId]
-// })
+const mDTP = (dispatch) => ({
+    openModal: () => dispatch(openModal('profilePic'))
+})
 
 
-export default class ProfileThumb extends React.Component{
+class ProfileThumb extends React.Component{
     constructor(props){
         super(props);
+        this.handleOpenModal = this.handleOpenModal.bind(this);
     }
 
+    handleOpenModal(){
+        this.props.openModal();
+        document.body.classList.add('modal-open');
+    }
     
     render(){
         return(
             <div className="profile-thumb-container">
                 <div className="prof-pic">
                     <img src={this.props.user.profile_photo}></img>
+                    {this.props.user.id === this.props.currentUser.id ? 
+                    <button onClick={this.handleOpenModal} className="prof-pic-btn"><i className="fas fa-camera"></i></button>
+                    : <></>}
                 </div>
                 <h2>{`${this.props.user.first_name} ${this.props.user.last_name}`}</h2>
                 <span>{this.props.user.bio}</span>
@@ -29,4 +39,4 @@ export default class ProfileThumb extends React.Component{
 }
 
 
-// export default withRouter(connect(mSTP)(ProfileThumb));
+export default withRouter(connect(null, mDTP)(ProfileThumb));

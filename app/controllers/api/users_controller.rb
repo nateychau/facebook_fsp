@@ -20,6 +20,15 @@ class Api::UsersController < ApplicationController
         end
     end
 
+    def update
+        @user = User.find_by(id: params[:id])
+        if @user.update(user_params)
+            render :show
+        else
+            render json:@user.errors.full_messages, status: 404
+        end
+    end
+
     def index 
         @users = author_id_arr ? User.where({id: author_id_arr}) : User.all
         render :index
@@ -40,7 +49,9 @@ class Api::UsersController < ApplicationController
             :birthday,
             :location, 
             :work,
-            :school
+            :school,
+            :profile_photo,
+            :cover_photo
         )
     end
 end

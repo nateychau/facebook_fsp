@@ -7,12 +7,14 @@ import Feed from './feed'
 import Modal from './session/modal'
 import Profile from './profile/profile'
 import PostModal from './posts/post_modal'
+import ProfilePicModal from './profile/profil_pic_modal'
 
 const App = () => (
   <div className='app'>
 
     <Modal/>
     <ProtectedRoute path="/users/:userId" component={PostModal} />
+    <ProtectedRoute path="/users/:userId" component={ProfilePicModal}/>
     <AuthRoute exact path="/" component={LoginFormContainer}/>
     <ProtectedRoute path="/" component={Navbar}/>
     <Switch>

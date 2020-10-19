@@ -26,7 +26,7 @@ export const getUser = (id) => (dispatch) => {
                 user => dispatch(receiveUser(user)),
                 err => dispatch(receiveErrors(err))
             )
-    )
+    ) 
 }
 
 export const getUsers = (idArr) => (dispatch) => {
@@ -34,6 +34,16 @@ export const getUsers = (idArr) => (dispatch) => {
         UserAPIUtil.getUsers({idArr: idArr})
             .then(
                 users => dispatch(receiveUsers(users)),
+                err => dispatch(receiveErrors(err))
+            )
+    )
+}
+
+export const updateUser = (user) => (dispatch) => {
+    return (
+        UserAPIUtil.updateUser(user)
+            .then(
+                user => dispatch(receiveUser(user)),
                 err => dispatch(receiveErrors(err))
             )
     )

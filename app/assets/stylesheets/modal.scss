@@ -6,6 +6,8 @@
     left: 0;
     background: rgba(255, 255, 255, .8);
     z-index: 99;
+    //begin testing
+    overflow-y: initial;
 }
   
 .modal-child {
@@ -17,6 +19,9 @@
   left: 50%;
   transform: translate(-50%, -50%);
   box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
+  //begin testing
+  // height: 80vh;
+  // overflow-y: auto;
 }
   
 .modal-form{

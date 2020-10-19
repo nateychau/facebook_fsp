@@ -77,7 +77,7 @@ class Profile extends React.Component{
             } else {
                 return (
                     <div className='profile-page'>
-                        <Header user={this.props.user}/>
+                        <Header user={this.props.user} currentUser={this.props.currentUser}/>
                         <div className="profile-nav-container">
                             <div className="profile-nav-bar">
                                 <div className="profile-nav-links">

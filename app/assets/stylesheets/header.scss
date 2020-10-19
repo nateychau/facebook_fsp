@@ -92,3 +92,63 @@
     position: absolute;
     top: 300px;
 }
+
+.prof-pic-btn{
+    height: 36px;
+    width: 36px;
+    border-radius: 100%;
+    padding: 3px 3px;
+    position: relative;
+    border: none;
+    top: -60px;
+    left: 135px;
+    background-color: #e4e6eb;
+    cursor: pointer;
+}
+
+button.prof-pic-btn:active{
+    top: -60px;
+    height: 35px;
+    width: 35px;
+}
+
+button.prof-pic-btn:active .fas{
+    font-size: 1.299rem;
+}
+
+.prof-pic-btn:hover, .cover-pic-btn:hover{
+    background-color: #cacbcf;
+}
+
+.cover-pic-btn{
+    height: 36px;
+    width: 161px;
+    padding: 0 12px;
+    border-radius: 8px;
+    background-color: #e4e6eb;
+    cursor: pointer; 
+    border: none;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    font-size: .9360rem;
+    line-height: 1.3333;
+    left: 80%;
+    top: -10%;
+    letter-spacing: -.5px;
+}
+
+
+
+// button.cover-pic-btn:active .fas{
+//     font-size: .9300rem
+// }
+
+button.cover-pic-btn:active{
+    top: -10%;
+    font-size: .9300rem;
+    height: 35px;
+    width: 160px;
+}
