@@ -70,7 +70,7 @@ class Wall extends React.Component{
         })
         const postArr = (allAuthorsFetched && authorIdArr.length > 0) ? this.props.posts.reverse().map(post => {
             let author = this.props.users[post.author_id]
-            return <PostItem post={post} author={author} key={post.id}/>
+            return <PostItem post={post} author={author} key={post.id} currentUser={this.props.currentUser}/>
         }) : [];
         return (
             <div className="wall-container">

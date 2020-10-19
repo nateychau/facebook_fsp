@@ -4,7 +4,7 @@ class Api::PostsController < ApplicationController
         if @post.save
             render :show
         else
-            render json: @post.errors.full_messages, status: 404
+            render json: @post.errors.full_messages, status: 400
         end
     end
 

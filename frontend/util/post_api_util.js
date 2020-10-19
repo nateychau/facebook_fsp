@@ -5,7 +5,8 @@ export const publishPost = post => {
         method: 'POST',
         data: { post }
       })
-      )}
+    )
+}
   
   
 export const deletePost = (postId) => {

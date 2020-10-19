@@ -14,6 +14,6 @@ export const updateFilter = (filter, value) => (dispatch, getState) => {
   dispatch(changeFilter(filter, value));
   return getPosts(getState().ui.filters)(dispatch)
     .then(()=>{
-      dispatch(getUsers(getAuthors(getState().entities.posts)))
+      dispatch(getUsers(getAuthors(getState().entities.posts, getState().entities.comments)))
     })
 };

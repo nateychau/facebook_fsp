@@ -13,10 +13,10 @@ const receivePost = (post) => {
     })
 }
 
-const receiveAllPosts = (posts) => {
+const receiveAllPosts = (data) => {
     return ({
         type: RECEIVE_ALL_POSTS,
-        posts
+        data
     })
 }
 
@@ -59,7 +59,8 @@ export const editPost = (post) => (dispatch) => {
     return (
         PostAPIUtil.editPost(post)
             .then(
-                post => dispatch
+                post => dispatch(receivePost(post)),
+                err => dispatch(receiveErrors(err))
             )
     )
 }

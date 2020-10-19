@@ -58,8 +58,7 @@ class PhotoModal extends React.Component{
         for(let p of formData){
             console.log(p);
         }
-        this.props.processForm(formData);
-        this.setState({imageUrl: "", imageFile: null});
+        this.props.processForm(formData).then(this.setState({imageUrl: "", imageFile: null}));
         document.body.classList.remove('modal-open')
         this.props.closeModal();
     }

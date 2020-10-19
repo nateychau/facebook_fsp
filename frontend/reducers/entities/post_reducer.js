@@ -10,7 +10,7 @@ export const postReducer = (state = {}, action) => {
     let newState = Object.assign({}, state)
     switch (action.type){
         case RECEIVE_ALL_POSTS:
-            Object.values(action.posts).forEach(post => {
+            Object.values(action.data.posts).forEach(post => {
                 newState[post.id] = post
             })
             return newState;
@@ -23,6 +23,6 @@ export const postReducer = (state = {}, action) => {
         case CLEAR_POSTS:
             return {};
         default:
-            return state
+            return state;
     }
 }
