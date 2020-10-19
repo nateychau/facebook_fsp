@@ -13,14 +13,15 @@ import Timeline from './timeline';
 const mSTP = (state, ownProps) => {
     return ({
         user: state.entities.users[ownProps.match.params.userId],
-        errors: state.errors.general
+        errors: state.errors.general,
+        currentUser: state.entities.users[state.session.currentUser]
     })
 }
 
 const mDTP = (dispatch, ownProps) => {
     return ({
         getUser: (id) => dispatch(getUser(id)),
-        clearErrors: () => dispatch(clearErrors())
+        clearErrors: () => dispatch(clearErrors()),
     })
 }
 
@@ -76,7 +77,7 @@ class Profile extends React.Component{
             } else {
                 return (
                     <div className='profile-page'>
-                        <Header />
+                        <Header user={this.props.user}/>
                         <div className="profile-nav-container">
                             <div className="profile-nav-bar">
                                 <div className="profile-nav-links">
@@ -85,7 +86,12 @@ class Profile extends React.Component{
                                     <div className={this.state.page === 'friends' ? 'active-profile-page' : ''}onClick={this.handlePageToRender('friends')}><p>Friends</p></div>
                                     <div className={this.state.page === 'photos' ? 'active-profile-page' : ''}onClick={this.handlePageToRender('photos')}><p>Photos</p></div>
                                 </div>
-                                <button className="profile-nav-button">Edit Profile</button>
+                                {this.props.currentUser.id === this.props.user.id ? 
+                                <button className="profile-nav-button">
+                                    <div className="edit-icon"></div>
+                                    Edit Profile
+                                </button>
+                                : <></>}
                             </div>
                         </div>
                         <div className="profile-main">

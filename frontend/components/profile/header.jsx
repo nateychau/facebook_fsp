@@ -3,11 +3,11 @@ import ProfileThumb from './profile_thumb';
 import CoverPhoto from './cover_photo';
 import ProfileNav from './profile-nav';
 
-export default () => (
+export default ({user}) => (
     <div className="profile-header">
-        <CoverPhoto />
-        <div className="transparent"></div>
-        <ProfileThumb />
+        <CoverPhoto user={user}/>
+        {/* <div className="transparent"></div> */}
+        <ProfileThumb user={user}/>
         {/* <ProfileNav /> */}
         
     </div>

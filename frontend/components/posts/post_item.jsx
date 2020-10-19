@@ -7,7 +7,7 @@ export default ({post, author}) => {
         <li className="post-item">
             <div className='post-item-header'>
                 <div className="prof-pic-thumb-small">
-                    <img src={window.testProfile}></img>
+                    <img src={author.profile_photo}></img>
                 </div>
                 <div className="post-item-meta">
                     <Link to={`/users/${author.id}`}><div>{`${author.first_name} ${author.last_name}`}</div></Link>

@@ -33,6 +33,7 @@ class PostModal extends React.Component{
         this.handleInput = this.handleInput.bind(this);
     }
 
+
     handleSubmit(e){
         e.preventDefault();
         let post = {
@@ -43,10 +44,13 @@ class PostModal extends React.Component{
         this.props.processForm(post).then(this.handlePostSubmit);
     }
 
-    // componentDidUpdate(){
-    //     console.log('component updated')
-    //     console.log(this.props)
-    // }
+    componentDidUpdate(prevProps){
+        // console.log('component updated')
+        // console.log(this.props)
+        if(this.props.match.params.userId !== prevProps.match.params.userId){
+            this.handlePostSubmit();
+        }
+    }
 
     handlePostSubmit(){
         this.props.closeModal();

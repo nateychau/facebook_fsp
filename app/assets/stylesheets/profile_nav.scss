@@ -86,7 +86,15 @@
     padding: 10px 8px;
 }
 
+.edit-icon{
+    background-image: image-url('edit.png');
+    height: 16px;
+    width: 16px;
+    margin-right: 8px;
+    margin-left: 5px;
+}
+
 .profile-nav-button:hover{
     cursor: pointer;
-    background-color: #959699;
+    background-color: #d4d6db;
 }

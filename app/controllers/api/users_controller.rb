@@ -1,6 +1,8 @@
 class Api::UsersController < ApplicationController
     def create
         @user = User.new(user_params)
+        # @user.profile_photo.attach(io: File.open("https://facebewk-seeds.s3-us-west-1.amazonaws.com/default_prof_male.jpg"), filename: "default_prof_male.jpg")
+        # @user.cover_photo.attach(io: File.open("app/assets/images/test_cover.jpg"), filename: "cover_test.jpg")
         if @user.save 
             login!(@user)
             render :show

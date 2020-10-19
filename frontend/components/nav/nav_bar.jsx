@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export default class Greeting extends React.Component {
+export default class Navbar extends React.Component {
     constructor(props){
         super(props);
         this.handleLogout = this.handleLogout.bind(this);
@@ -18,7 +18,9 @@ export default class Greeting extends React.Component {
                     <Link to="/"><button className="btn">Logo</button></Link>
                 </div>
                 <div className="nav-center">
-                    <i class="fab fa-github"><a href="https://github.com/nateychau"></a></i>
+                    <a href="https://github.com/nateychau" target="_blank"><i className="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/nathan-chau-363130180/" target="_blank"><i className="fab fa-linkedin"></i></a>
+                    <a href="https://nateychau.github.io/" target="_blank"><i className="fas fa-address-card"></i></a>
                 </div>
                 <div className="nav-right">
                 <Link to={`/users/${this.props.currentUser.id}`}><button className="btn profile">{this.props.currentUser.first_name}</button></Link>

@@ -1,6 +1,7 @@
 .nav-container{
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 5px 15px;
     background-color: #fff;
     position: sticky;
@@ -32,4 +33,12 @@
 
 .nav-container .btn:hover{
     background-color: #d2d5dd 
+}
+
+.nav-center{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    position: relative;
+    left: 3.5%;
 }
