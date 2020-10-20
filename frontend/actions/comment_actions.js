@@ -13,7 +13,7 @@ const receiveComment = (comment) => {
 
 const deleteCommentObj = (comment) => {
     return ({
-        type: DELETE_POST,
+        type: DELETE_COMMENT,
         comment
     })
 }
@@ -30,7 +30,7 @@ export const publishComment = (comment) => (dispatch) => {
 
 export const deleteComment = (commentId) => (dispatch) => {
     return (
-        CommentAPIUtil.deleteComment(comment)
+        CommentAPIUtil.deleteComment(commentId)
             .then(
                 comment => dispatch(deleteCommentObj(comment)),
                 err => dispatch(receiveErrors(err))

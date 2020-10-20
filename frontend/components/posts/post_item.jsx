@@ -78,7 +78,7 @@ class PostItem extends React.Component{
         let timestamp = new Date(this.props.post.created_at).toDateString()
         let commentArr = this.props.comments ?
             this.props.comments.map(comment => {
-                return <CommentItem key={comment.id} comment={comment}/>
+                return <CommentItem key={comment.id} comment={comment} wallUser={this.props.wallUser}/>
             })
         : []
         return (
