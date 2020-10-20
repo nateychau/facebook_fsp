@@ -15,20 +15,21 @@ class CommentItem extends React.Component{
         super(props)
     }
 
+
     render(){
         let timestamp = new Date(this.props.comment.created_at).toDateString()
         return (
             <li className="comment-item">
-                <div className='comment-item-header'>
-                    <div className="prof-pic-thumb-smallest">
-                        <img src={this.props.author.profile_photo}></img>
-                    </div>
-                    <div className="post-item-meta">
-                        <Link to={`/users/${this.props.author.id}`}><div>{`${this.props.author.first_name} ${this.props.author.last_name}`}</div></Link>
-                        <div>{timestamp}</div>
-                    </div>
+                <div className="prof-pic-thumb-comment">
+                    <img src={this.props.author.profile_photo}></img>
                 </div>
-                <div className="comment-item-body">{this.props.comment.body}</div>
+                <div className="comment-item-main">
+                    <div className="comment-item-detail">
+                        <Link to={`/users/${this.props.author.id}`}><div>{`${this.props.author.first_name} ${this.props.author.last_name}`}</div></Link>
+                        <div className="comment-item-body">{this.props.comment.body}</div>
+                    </div>
+                    <div className='comment-time'>{timestamp}</div>
+                </div>
             </li>
         )
     }

@@ -62,11 +62,13 @@ class PostItem extends React.Component{
                     </div>
                 </div>
                 <div className="post-item-body">{this.props.post.body}</div>
+                <div className="reaction-bar"></div>
+                <div className="option-bar"></div>
                 <ul className="comment-list">
                     {commentArr}
                 </ul>
                 <div className="new-comment-container">
-                    <div className="prof-pic-thumb-smallest">
+                    <div className="prof-pic-thumb-comment">
                         <img src={this.props.currentUser.profile_photo}></img>
                     </div>
                     <input type='text' value={this.state.body} placeholder="Write a comment..." onChange={this.handleInput} onKeyDown={this.handleSubmit}></input>

@@ -59,7 +59,7 @@ class Profile extends React.Component{
         render(){
             let renderedPage;
             if(this.state.page === 'timeline'){
-                renderedPage = <Timeline user={this.props.user} />
+                renderedPage = <Timeline user={this.props.user} currentUser={this.props.currentUser}/>
             }
             else if(this.state.page === 'about'){
                 renderedPage = <About user={this.props.user} /> 

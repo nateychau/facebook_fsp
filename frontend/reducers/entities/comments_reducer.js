@@ -6,9 +6,11 @@ export const commentReducer = (state = {}, action) => {
     let newState = Object.assign({}, state)
     switch(action.type){
         case RECEIVE_ALL_POSTS:
-            Object.values(action.data.comments).forEach(comment => {
-                newState[comment.id] = comment
-            })
+            if(action.data.comments){
+                Object.values(action.data.comments).forEach(comment => {
+                    newState[comment.id] = comment
+                })
+            }
             return newState;
         case CLEAR_POSTS:
             return {};
