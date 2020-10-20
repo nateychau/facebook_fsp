@@ -1,5 +1,5 @@
 import React from 'react';
-import { publishPost } from '../../actions/post_actions';
+import { publishPost, editPost } from '../../actions/post_actions';
 import { closeModal } from '../../actions/modal_actions'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
@@ -18,7 +18,8 @@ const mDTP = dispatch => {
     return {
         closeModal: () => dispatch(closeModal()),
         getUser: (id) => dispatch(getUser(id)),
-        processForm: (post) => dispatch(publishPost(post)), 
+        publishPost: (post) => dispatch(publishPost(post)), 
+        editPost: (post) => dispatch(editPost(post))
     }
 }
 
@@ -36,12 +37,24 @@ class PostModal extends React.Component{
 
     handleSubmit(e){
         e.preventDefault();
-        let post = {
-            body: this.state.body, 
-            author_id: this.props.currentUser.id, 
-            wall_id: this.props.wallUser.id
-        };
-        this.props.processForm(post).then(this.handlePostSubmit);
+        let post;
+        if(this.props.modal === 'post'){
+            post = {
+                body: this.state.body, 
+                author_id: this.props.currentUser.id, 
+                wall_id: this.props.wallUser.id
+            };
+            this.props.publishPost(post).then(this.handlePostSubmit);
+        }
+        else if(Array.isArray(this.props.modal)){
+            post = {
+                id: this.props.modal[1],
+                body: this.state.body,
+                author_id: this.props.currentUser.id,
+                wall_id: this.props.wallUser.id
+            }
+            this.props.editPost(post).then(this.handlePostSubmit);
+        }
     }
 
     componentDidUpdate(prevProps){
@@ -49,6 +62,9 @@ class PostModal extends React.Component{
         // console.log(this.props)
         if(this.props.match.params.userId !== prevProps.match.params.userId){
             this.handlePostSubmit();
+        }
+        if(this.props.modal !== prevProps.modal && Array.isArray(this.props.modal)){
+            this.setState({body: this.props.modal[2]});
         }
     }
 
@@ -64,7 +80,7 @@ class PostModal extends React.Component{
     }
 
     render(){
-        if (this.props.modal !== 'post'){
+        if (this.props.modal !== 'post' && !Array.isArray(this.props.modal)){
             return null;
         }
         let placeholder;

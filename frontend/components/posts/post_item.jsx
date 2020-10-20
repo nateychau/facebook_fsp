@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { getCommentsByPost } from '../../reducers/selectors/comment_selectors';
 import CommentItem from './comment_item';
 import { publishComment } from '../../actions/comment_actions';
+import { deletePost } from '../../actions/post_actions';
+import { openModal } from '../../actions/modal_actions';
 
 const mSTP = (state, ownProps) => {
     return({
@@ -11,9 +13,11 @@ const mSTP = (state, ownProps) => {
     })
 }
 
-const mDTP = (dispatch) => {
+const mDTP = (dispatch, ownProps) => {
     return ({
-        publishComment: (comment) => dispatch(publishComment(comment))
+        publishComment: (comment) => dispatch(publishComment(comment)),
+        deletePost: () => dispatch(deletePost(ownProps.post.id)),
+        openModal: () => dispatch(openModal(['edit', ownProps.post.id, ownProps.post.body]))
     })
 }
 
@@ -22,11 +26,14 @@ class PostItem extends React.Component{
         super(props)
         this.state = {
             body: '',
-            author_id: this.props.currentUser.id,
-            post_id: this.props.post.id
+            more: false
         }
         this.handleInput = this.handleInput.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleMoreOpen = this.handleMoreOpen.bind(this);
+        this.handleMoreClose = this.handleMoreClose.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
+        this.handleEdit = this.handleEdit.bind(this);
     }
 
     handleInput(e){
@@ -35,12 +42,36 @@ class PostItem extends React.Component{
 
     handleSubmit(e){
         if(e.key === 'Enter'){
-            this.props.publishComment(this.state).then(this.setState({body: '', author_id: this.props.currentUser.id, post_id: this.props.post.id}));
+            this.props.publishComment({
+                body: this.state.body,
+                author_id: this.props.currentUser.id,
+                post_id: this.props.post.id
+            })
+                .then(this.setState({
+                    body: '', 
+                    more: false
+                }));
         }
     }
 
+    handleDelete(){
+        this.props.deletePost();
+    }
+
+    handleEdit(){
+        this.props.openModal();
+    }
+
     componentWillUnmount(){
-        this.setState({body: '', author_id: this.props.currentUser.id, post_id: this.props.post.id});
+        this.setState({body: '', more: false});
+    }
+
+    handleMoreOpen(){
+        this.setState({more: true});
+    }
+
+    handleMoreClose(){
+        this.setState({more: false});
     }
 
     render(){
@@ -53,13 +84,37 @@ class PostItem extends React.Component{
         return (
             <li className="post-item">
                 <div className='post-item-header'>
-                    <div className="prof-pic-thumb-small">
-                        <img src={this.props.author.profile_photo}></img>
+                    <div>
+                        <div className="prof-pic-thumb-small">
+                            <img src={this.props.author.profile_photo}></img>
+                        </div>
+                        <div className="post-item-meta">
+                            <Link to={`/users/${this.props.author.id}`}><div>{`${this.props.author.first_name} ${this.props.author.last_name}`}</div></Link>
+                            <div>{timestamp}</div>
+                        </div>
                     </div>
-                    <div className="post-item-meta">
-                        <Link to={`/users/${this.props.author.id}`}><div>{`${this.props.author.first_name} ${this.props.author.last_name}`}</div></Link>
-                        <div>{timestamp}</div>
-                    </div>
+                    {this.props.currentUser.id === this.props.author.id || this.props.currentUser.id === this.props.wallUser.id ? 
+                    <button className="more-container" onClick={this.handleMoreOpen} onBlur={this.handleMoreClose}>
+                        <i className="fas fa-ellipsis-h"></i>
+                    </button>
+                    : <div></div>}
+                    {this.state.more ? 
+                    <div className="more-open">
+                        {this.props.author.id === this.props.currentUser.id ? 
+                        <button className="more-btn" onMouseDown={this.handleEdit}>
+                            <div className="icon-container">
+                                <i className="far fa-edit"></i>
+                            </div>
+                            <div>Edit post</div>
+                        </button>
+                        : <></>}
+                        <button className="more-btn" onMouseDown={this.handleDelete}>
+                            <div className="icon-container">
+                                <i className="far fa-trash-alt"></i>
+                            </div>
+                            <div>Delete post</div>
+                        </button>
+                    </div> : <></>}
                 </div>
                 <div className="post-item-body">{this.props.post.body}</div>
                 <div className="reaction-bar"></div>

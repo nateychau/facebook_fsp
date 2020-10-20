@@ -19,22 +19,20 @@
 }
 
 
-.btn-profile:hover{
-    background-color: #d4e7fa;
-}
 
 .nav-container .btn{
     background-color: #e4e6eb; 
 }
 
-.nav-container .btn:hover{
+.nav-container .btn:hover, .btn-profile:hover{
     background-color: #d2d5dd; 
 }
 
 
 .btn-profile{
-    background-color: #e7f3ff;
-    color: #1776f2;
+    // background-color: #e7f3ff;
+    // color: #1776f2;
+    background-color: #fff;
     padding-top: 5px;
     padding-bottom: 5px;
     padding-left: 5px;
@@ -158,6 +156,11 @@
 
 #active-nav-button{
     background-color: #e7f3ff;
+    color: #1776f2;
+}
+
+#active-nav-button:hover{
+    background-color: #d4e7fa;
 }
 
 .util-container div:last-child{

@@ -18,7 +18,7 @@ export const postReducer = (state = {}, action) => {
             newState[action.post.id] = action.post;
             return newState;
         case DELETE_POST:
-            newState[action.post.id] = undefined;
+            delete newState[action.post.id];
             return newState;
         case CLEAR_POSTS:
             return {};

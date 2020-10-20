@@ -75,3 +75,27 @@
 .prof-pic-btn .fas{
     font-size: 1.3rem;
 }
+
+//POST ICONS
+
+.more-container{
+    height: 36px;
+    width: 36px;
+    border-radius: 100%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 5px;
+    border: none;
+    background-color: #fff;
+}
+
+.more-container:hover{
+    background-color: #f3f3ed;
+}
+
+.more-container .fas{
+    font-size: 1rem;
+    color: #8b8d90;
+}

@@ -22,6 +22,6 @@ class Post < ApplicationRecord
         foreign_key: :wall_id,
         class_name: :User
 
-    has_many :comments
+    has_many :comments, dependent: :destroy
 
 end

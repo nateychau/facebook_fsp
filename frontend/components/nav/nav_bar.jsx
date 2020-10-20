@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+
 export default class Navbar extends React.Component {
     constructor(props){
         super(props);
@@ -44,7 +45,7 @@ export default class Navbar extends React.Component {
                 </div>
                 <div className="nav-right">
                     <Link to={`/users/${this.props.currentUser.id}`}>
-                        <button className="btn-profile">
+                        <button id={this.props.location.pathname === `/users/${this.props.currentUser.id}` ? 'active-nav-button' : ''} className="btn-profile">
                             <div className="prof-pic-thumb-smallest">
                                 <img src={this.props.currentUser.profile_photo}></img>
                             </div>

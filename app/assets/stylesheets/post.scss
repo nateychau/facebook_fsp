@@ -24,15 +24,22 @@
 .post-item-header{
     width: 100%;
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     margin-bottom: 5px;
     padding-left: 5px;
+    padding-right: 5px;
+    position: relative;
+}
+.post-item-header div:first-child{
+    display: flex;
+    justify-content: flex-start;
+    // flex-grow: 1;
 }
 
 .post-item-meta{
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
+    // flex-grow: 1;
     padding-left: 10px;
     justify-content: space-evenly;
 }
@@ -45,6 +52,68 @@
 .post-item-meta div:first-child{
     font-weight: 600;
     font-size: .9375rem;
+}
+
+//check icons.scss for .more-container
+.more-open{
+    width: 312px;
+    display: flex;
+    flex-direction: column; 
+    flex-wrap: wrap;
+    // padding: 5px 5px;
+    background: #fff;
+    border-radius: 8px;
+    padding: 8px 8px;
+    // box-shadow: 0 0.3px 0.3px rgba(0, 0, 0, 0.1), 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 10px 1px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
+    position: absolute;
+    top: 45px;
+    right: -5px;
+    margin-right: 20px;
+}
+
+.more-open:after{
+    content: "";
+    position: absolute;
+    border-top: none;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #fff;
+    border-left: 10px solid transparent;
+    // z-index: 99;
+    top: -10px;
+    right: 5px;
+}
+
+.more-btn{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #fff;
+    cursor: pointer;
+    border-radius: 6px;
+    border: none;
+    height: 36px;
+    padding-left: 8px;
+}
+
+.more-btn:hover{
+    background-color: #f3f3ed;
+}
+
+.icon-container{
+    height: 20px;
+    width: 20px;
+    margin-right: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.more-btn div:last-child{
+    font-size: .9375rem;
+    font-weight: 500;
+    line-height: 1.3333;
+    display: flex;
+    align-items: center;
 }
 
 .post-item-body{
