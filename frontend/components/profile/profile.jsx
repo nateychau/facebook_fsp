@@ -4,7 +4,7 @@ import Header from './header';
 import { Redirect } from 'react-router-dom'
 import { getUser } from '../../actions/user_actions';
 import { clearErrors } from '../../actions/session/session_actions'
-import About from './about';
+import About from './about_page';
 import Friends from './friends';
 import Photos from './photos';
 import Timeline from './timeline';
@@ -62,7 +62,7 @@ class Profile extends React.Component{
                 renderedPage = <Timeline user={this.props.user} currentUser={this.props.currentUser}/>
             }
             else if(this.state.page === 'about'){
-                renderedPage = <About user={this.props.user} /> 
+                renderedPage = <About user={this.props.user} currentUser={this.props.currentUser}/> 
             } else if(this.state.page === 'friends'){
                 renderedPage = <Friends user={this.props.user} />
             }else if(this.state.page === 'photos'){
@@ -87,7 +87,7 @@ class Profile extends React.Component{
                                     <div className={this.state.page === 'photos' ? 'active-profile-page' : ''}onClick={this.handlePageToRender('photos')}><p>Photos</p></div>
                                 </div>
                                 {this.props.currentUser.id === this.props.user.id ? 
-                                <button className="profile-nav-button">
+                                <button className="profile-nav-button" onClick={this.handlePageToRender('about')}>
                                     <div className="edit-icon"></div>
                                     Edit Profile
                                 </button>

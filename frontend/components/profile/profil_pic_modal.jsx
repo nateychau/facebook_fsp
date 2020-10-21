@@ -1,5 +1,5 @@
 import React from 'react';
-import { getUser, updateUser } from '../../actions/user_actions';
+import { getUser, updateUserPhoto } from '../../actions/user_actions';
 import { closeModal } from '../../actions/modal_actions';
 import { connect } from 'react-redux'
 
@@ -15,7 +15,7 @@ const mDTP = dispatch => {
     return {
         closeModal: () => dispatch(closeModal()),
         getUser: (id) => dispatch(getUser(id)),
-        processForm: (user) => dispatch(updateUser(user))
+        processForm: (user) => dispatch(updateUserPhoto(user))
     }
 }
 
@@ -87,7 +87,7 @@ class PhotoModal extends React.Component{
                         <form className='upload-form'>
                             <label className="upload-btn">
                                 + Upload Photo
-                                <input onChange={this.handleUpload} type="file"></input>
+                                <input onChange={this.handleUpload} type="file" accept=".png, .jpg, .jpeg"></input>
                             </label>
                         </form>
                         {this.state.imageUrl ? <div className="image-preview"><img src={this.state.imageUrl}></img></div> : <></>}

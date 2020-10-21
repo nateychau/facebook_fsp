@@ -1,15 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { getCommentsByPost } from '../../reducers/selectors/comment_selectors';
 import CommentItem from './comment_item';
 import { publishComment } from '../../actions/comment_actions';
 import { deletePost } from '../../actions/post_actions';
 import { openModal } from '../../actions/modal_actions';
+import { getUser } from '../../actions/user_actions';
 
 const mSTP = (state, ownProps) => {
+    let wallId = ownProps.match.params.userId
     return({
-        comments: getCommentsByPost(state.entities.comments, ownProps.post.id)
+        currentUser: state.entities.users[state.session.currentUser],
+        wallUser: state.entities.users[wallId],
+        comments: getCommentsByPost(state.entities.comments, ownProps.post.id),
+        author: state.entities.users[ownProps.post.author_id]
     })
 }
 
@@ -17,7 +23,8 @@ const mDTP = (dispatch, ownProps) => {
     return ({
         publishComment: (comment) => dispatch(publishComment(comment)),
         deletePost: () => dispatch(deletePost(ownProps.post.id)),
-        openModal: () => dispatch(openModal(['edit', ownProps.post.id, ownProps.post.body]))
+        openModal: () => dispatch(openModal(['edit', ownProps.post.id, ownProps.post.body])),
+        getAuthor: () => dispatch(getUser(ownProps.post.author_id)),
     })
 }
 
@@ -34,6 +41,12 @@ class PostItem extends React.Component{
         this.handleMoreClose = this.handleMoreClose.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
         this.handleEdit = this.handleEdit.bind(this);
+    }
+
+    componentDidMount(){
+        if(!this.props.author){
+            this.props.getAuthor();
+        }
     }
 
     handleInput(e){
@@ -75,10 +88,13 @@ class PostItem extends React.Component{
     }
 
     render(){
+        if(!this.props.author){
+            return null
+        }
         let timestamp = new Date(this.props.post.created_at).toDateString()
         let commentArr = this.props.comments ?
             this.props.comments.map(comment => {
-                return <CommentItem key={comment.id} comment={comment} wallUser={this.props.wallUser}/>
+                return <CommentItem key={comment.id} comment={comment}/>
             })
         : []
         return (
@@ -99,7 +115,7 @@ class PostItem extends React.Component{
                     </button>
                     : <div></div>}
                     {this.state.more ? 
-                    <div className="more-open">
+                    <div id="more-open-post" className="more-open">
                         {this.props.author.id === this.props.currentUser.id ? 
                         <button className="more-btn" onMouseDown={this.handleEdit}>
                             <div className="icon-container">
@@ -133,4 +149,4 @@ class PostItem extends React.Component{
     }
 }
 
-export default connect(mSTP, mDTP)(PostItem);
+export default withRouter(connect(mSTP, mDTP)(PostItem));

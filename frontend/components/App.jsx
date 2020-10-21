@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "./nav/nav_bar_container";
+import Navbar from "./nav/nav_bar";
 import LoginFormContainer from "./session/login_form_container";
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';

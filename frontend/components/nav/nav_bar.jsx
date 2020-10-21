@@ -1,37 +1,67 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Notifications from './notifications';
+import { connect } from 'react-redux';
+import { logout } from '../../actions/session/session_actions';
+import { getIncomingFriendRequests } from '../../reducers/selectors/friend_request_selectors';
+
+const mapStateToProps = (state) => {
+    return ({
+        currentUser: state.entities.users[state.session.currentUser],
+        friendRequests: getIncomingFriendRequests(state.entities.friendRequests, state.session.currentUser)
+    })
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return ({
+        logout: () => dispatch(logout())
+    })
+}
 
 
-export default class Navbar extends React.Component {
+class Navbar extends React.Component {
     constructor(props){
         super(props);
         this.state={
             messages: false,
             notif: false,
-            logout: false
+            logout: false,
+            read: false,
+            notifCount: this.props.friendRequests.length
         }
         this.handleLogout = this.handleLogout.bind(this);
         this.handleOpenDropdown = this.handleOpenDropdown.bind(this);
         this.handleCloseDropwdown = this.handleCloseDropdown.bind(this);
     }
 
+    componentDidUpdate(prevProps){
+        if(this.props.friendRequests.length > prevProps.friendRequests.length){
+            this.setState({read: false, notifCount: this.props.friendRequests.length - prevProps.friendRequests.length});
+        }
+    }
+    
     handleLogout(){
         console.log('event fired')
         this.props.logout();
     }
-
+    
     handleOpenDropdown(type){
         return (e) => {
-            this.setState({[type]: true})
+            this.setState({[type]: true}, ()=>{
+                if (type === 'notif'){
+                    this.setState({read: true, notifCount: 0})
+                }
+            })
         }
     }
 
+    
     handleCloseDropdown(type){
         return (e) => {
             this.setState({[type]: false})
         }
     }
-
+    
     render(){
         return (
             <div className="nav-container">
@@ -58,10 +88,8 @@ export default class Navbar extends React.Component {
                         <div>You have no new messages</div>
                     </div> : <></>}
                     <button id={this.state.notif ? 'active-nav-button' : ''} onClick={this.handleOpenDropdown("notif")} onBlur={this.handleCloseDropwdown("notif")} className="util-btn"><div className="notifications"></div></button>
-                    {this.state.notif ? <div className="util-container">
-                        <div>Notifications</div>
-                        <div>You have no new notifications</div>
-                    </div> : <></>}
+                    {this.state.notifCount ? <div className='notif-count'>{this.state.notifCount}</div> : <></>}
+                    {this.state.notif ? <Notifications requests={this.props.friendRequests} /> : <></>}
                     <button id={this.state.logout ? 'active-nav-button' : ''} onClick={this.handleOpenDropdown("logout")} onBlur={this.handleCloseDropwdown("logout")} className="util-btn"><div className="dropdown"></div></button>
                     {this.state.logout ? <div className="util-container">
                         <button onMouseDown={this.handleLogout} className="logout-btn"><div className="icon-container"><div className="logout-icon"></div></div><div>Log out</div></button>
@@ -71,3 +99,5 @@ export default class Navbar extends React.Component {
         )
     }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

@@ -1,0 +1,184 @@
+
+.about-row{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+}
+
+.about-text{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-top: 20px;
+    width: 60%;
+    position: relative;
+}
+
+// .about-text form{
+//     padding: 10px 15px;
+//     cursor: text;
+//     border: 1px solid black;
+//     border-radius: 6px;
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: start;
+//     flex-grow: 1;
+// }
+
+.about-text label{
+    font-size: .7rem;
+    line-height: 1.25;
+    color: #aeafb1;
+    position: absolute;
+    top: 27px;
+    left: 17px;
+}
+
+.about-text input:focus{
+    border-color: #217cf3;
+}
+
+.about-text input:focus+label{
+    color: #217cf3;
+}
+
+.about-text input{
+    // border: none;
+    font-size: 1.3rem;
+    //
+    padding: 20px 15px 10px;
+    cursor: text;
+    border: 1px solid #aeafb1;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    flex-grow: 1;
+}
+
+
+.about-text-buttons{
+    padding-top: 10px;
+    display: flex;
+    flex-direction: row;
+    align-self: flex-end;
+}
+
+.about-text-buttons button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 36px;
+    border-radius: 6px;
+    border: none;
+    padding: 0 12px;
+    font-weight: 600;
+    font-size: .9375rem;
+    line-height: 1.333;
+    cursor: pointer;
+}
+
+
+.about-birthday select, .about-text select{
+    height: 35px;
+    padding: 8px 12px;
+    background-color: #e4e6eb;
+    font-weight: 600;
+    font-size: .9375rem;
+    line-height: 1.333;
+    cursor: pointer;
+    margin-right: 10px;
+    color: black;
+    width: 33%;
+}
+
+.about-birthday select:last-child, .about-text select:last-child{
+    margin-right: 0;
+}
+
+.about-birthday select option, .about-text select option{
+    background-color: #fff;
+}
+
+.about-birthday select:hover, .about-text select:hover{
+    background-color: #d2d5db
+}
+
+#about-gender select{
+    width: 100%;
+}
+
+#about-gender{
+    width: 40%;
+}
+
+
+.about-birthday{
+    display: flex;
+}
+
+.cancel-btn{
+    background-color: #e4e6eb;
+    margin-right: 10px;
+}
+
+.cancel-btn:hover{
+    background-color: #d2d5db;
+}
+
+.submit-btn:hover{
+    background-color: #146cdf;
+}
+
+.submit-btn:disabled{
+    background-color: #e4e6eb;
+}
+
+.submit-btn{
+    background-color: #1877f2;
+    color: #fff;
+}
+
+.about-row span{
+    margin: 0 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.333;
+}
+
+.about-row .more-container{
+    margin-right: 10px;
+    background-color: #e4e6eb;
+}
+
+.about-row .more-container:hover{
+    background-color: #ced0d4;
+}
+
+.about-row .more-open{
+    padding-top: 8px;
+    top: 70px;
+    right: -10px;
+}
+
+.about-row-right .icon-container{
+    margin-right: 10px;
+}
+
+.about-row-right .more-open:after{
+    content: "";
+    position: absolute;
+    border-top: none;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #fff;
+    border-left: 10px solid transparent;
+    // z-index: 99;
+    top: -10px;
+    right: 5px;
+}
+
+.about-row-left{
+    display: flex;
+}

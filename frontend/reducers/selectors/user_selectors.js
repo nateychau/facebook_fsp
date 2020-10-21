@@ -13,3 +13,13 @@ export const getAuthors = (posts, comments) => {
     return res
 }
 
+//THIS METHOD IS FOR AN ARRAY OF FRIEND REQUESTS
+export const getRequesters = (requests) => {
+    let res = [];
+    requests.forEach(request => {
+        if(!res.includes(request.requester_id)){
+            res.push(request.requester_id)
+        }
+    })
+    return res;
+}

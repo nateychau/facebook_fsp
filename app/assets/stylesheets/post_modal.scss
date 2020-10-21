@@ -25,11 +25,20 @@
 .author-bar{
     padding-top: 16px;
     padding-bottom: 5px;
-    width: 100%;
+    width: 80%;
     font-weight: 600;
     font-size: .9375rem;
     line-height: 1.333;
     height: 40px;
+    margin-left: 10px;
+}
+
+
+.post-meta{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
 }
 
 .post-x{

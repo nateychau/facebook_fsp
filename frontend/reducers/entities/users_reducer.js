@@ -5,9 +5,9 @@ export const usersReducer = (state = {}, action) => {
     Object.freeze(state);
     switch (action.type){
         case RECEIVE_CURRENT_USER:
-            return Object.assign({}, state, {[action.currentUser.id]: action.currentUser})
+            return Object.assign({}, state, {[action.data.user.id]: action.data.user})
         case RECEIVE_USER:
-            return Object.assign({}, state, {[action.user.id]: action.user})
+            return Object.assign({}, state, {[action.data.user.id]: action.data.user})
         case RECEIVE_USERS: 
             let newState = Object.assign({}, state);
             Object.values(action.users).forEach((user)=>{

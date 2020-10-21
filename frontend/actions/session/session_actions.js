@@ -7,10 +7,10 @@ export const RECEIVE_LOGIN_ERRORS = "RECEIVE_LOGIN_ERRORS";
 export const RECEIVE_SIGNUP_ERRORS = "RECEIVE_SIGNUP_ERRORS";
 export const CLEAR_ERRORS = "CLEAR ERRORS";
 
-const receiveCurrentUser = (currentUser) => {
+export const receiveCurrentUser = (data) => {
     return ({
         type: RECEIVE_CURRENT_USER,
-        currentUser 
+        data 
     });
 }
 

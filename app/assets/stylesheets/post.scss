@@ -70,9 +70,10 @@
     top: 45px;
     right: -5px;
     margin-right: 20px;
+    z-index: 10;
 }
 
-.more-open:after{
+#more-open-post:after{
     content: "";
     position: absolute;
     border-top: none;

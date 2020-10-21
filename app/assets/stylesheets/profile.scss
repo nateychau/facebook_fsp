@@ -52,7 +52,10 @@
     margin-top: 15px;
 }
 
-.profile-intro div{
+// .profile-intro div:first-child{
+//     display: flex;
+// }
+.intro-row{
     display: flex;
 }
 
@@ -68,7 +71,7 @@
     color: black;
 }
 
-.profile-intro div{
+.profile-intro div.intro-row{
     padding-top: 20px;
     font-weight: normal;
     font-size: .9375rem;

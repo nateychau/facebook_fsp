@@ -4,8 +4,8 @@ import { withRouter } from 'react-router-dom';
 import { updateFilter } from '../../actions/filter_actions';
 import PostItem from '../posts/post_item';
 import { clearPosts } from '../../actions/post_actions';
-import { getUsers } from '../../actions/user_actions';
-import { getPostsByAuthor, getPostsByWall } from '../../reducers/selectors/post_selectors'
+// import { getUsers } from '../../actions/user_actions';
+import { getPostsByWall } from '../../reducers/selectors/post_selectors'
 
 const mSTP = (state, ownProps) => {
     let wallId = ownProps.match.params.userId
@@ -13,7 +13,7 @@ const mSTP = (state, ownProps) => {
         currentUser: state.entities.users[state.session.currentUser],
         wallUser: state.entities.users[wallId],
         posts: getPostsByWall(state.entities.posts, wallId),
-        users: state.entities.users
+        // users: state.entities.users
     }
 }
 
@@ -21,7 +21,7 @@ const mDTP = (dispatch, ownProps) => {
     return {
         updateFilter: (id) => dispatch(updateFilter('wallId', id)),
         clearPosts: () => dispatch(clearPosts()),
-        getUsers: (idArr) => dispatch(getUsers(idArr))
+        // getUsers: (idArr) => dispatch(getUsers(idArr))
     }
 }
 
@@ -29,7 +29,6 @@ const mDTP = (dispatch, ownProps) => {
 class Wall extends React.Component{
     constructor(props){
         super(props);
-        this.mapAuthorIds = this.mapAuthorIds.bind(this);
     }
     
     //NEED TO ADD LOGIC SO THAT NOT FETCHING ALL USERS EVERYTIME
@@ -49,28 +48,10 @@ class Wall extends React.Component{
         this.props.clearPosts();
     }
 
-    mapAuthorIds(){
-        let authorIdArr = []
-        this.props.posts.forEach(post => {
-            if(!authorIdArr.includes(post.author_id)){
-                authorIdArr.push(post.author_id);
-            }
-        });
-        return authorIdArr;
-    }
-
 
     render(){
-        let authorIdArr = this.mapAuthorIds();
-        let allAuthorsFetched = true;
-        authorIdArr.forEach(authorId => {
-            if (!Object.keys(this.props.users).includes(authorId.toString())){
-                allAuthorsFetched = false;
-            }
-        })
-        const postArr = (allAuthorsFetched && authorIdArr.length > 0) ? this.props.posts.reverse().map(post => {
-            let author = this.props.users[post.author_id]
-            return <PostItem  wallUser={this.props.wallUser} post={post} author={author} key={post.id} currentUser={this.props.currentUser}/>
+        const postArr = this.props.posts.length ? this.props.posts.reverse().map(post => {
+            return <PostItem post={post} key={post.id}/>
         }) : [];
         return (
             <div className="wall-container">

@@ -100,7 +100,12 @@ class PostModal extends React.Component{
                     <div className="post-modal">
                         <div className="x post-x" onClick={this.props.closeModal}>&#10006;</div>
                         <h2>Create Post</h2>
-                        <div className="author-bar">{`${this.props.currentUser.first_name} ${this.props.currentUser.last_name}`}</div>
+                        <div className='post-meta'>
+                            <div id="post-modal-pic" className="prof-pic-thumb-small">
+                                <img src={this.props.currentUser.profile_photo}></img>
+                            </div>
+                            <div className="author-bar">{`${this.props.currentUser.first_name} ${this.props.currentUser.last_name}`}</div>
+                        </div>
                         <form>
                             <textarea placeholder={placeholder} value={this.state.body} onChange={this.handleInput}></textarea>
                         </form>

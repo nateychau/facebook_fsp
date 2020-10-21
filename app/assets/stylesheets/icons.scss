@@ -23,6 +23,25 @@
     color: #848689;
 }
 
+.notif-count{
+    height: 19px;
+    width: 9px;
+    background-color: #f02849;
+    color: #fff;
+    font-weight: 500;
+    font-size: .8125rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5px;
+    border: none;
+    border-radius: 100%;
+    position: absolute;
+    right: 65px;
+    top: 6px;
+}
+
 
 // .fa-github{
 //     height: 40px;
@@ -72,6 +91,22 @@
     margin-right: 10px;
 }
 
+.male-icon{
+    background-image: image-url('male.png');
+    background-size: 20px 20px;
+    height: 20px;
+    width: 20px;
+    margin-right: 10px;
+}
+
+.female-icon{
+    background-image: image-url('female.png');
+    background-size: 20px 20px;
+    height: 20px;
+    width: 20px;
+    margin-right: 10px;
+}
+
 .prof-pic-btn .fas{
     font-size: 1.3rem;
 }
@@ -99,3 +134,4 @@
     font-size: 1rem;
     color: #8b8d90;
 }
+

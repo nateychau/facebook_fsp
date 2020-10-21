@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { openModal } from '../../actions/modal_actions';
-import { updateUser, getUser } from '../../actions/user_actions';
+import { updateUserPhoto, getUser } from '../../actions/user_actions';
 
 const mDTP = (dispatch) => ({
     openModal: () => dispatch(openModal('profilePic'))

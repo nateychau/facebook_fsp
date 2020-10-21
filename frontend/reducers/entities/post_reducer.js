@@ -7,12 +7,14 @@ import {
 
 export const postReducer = (state = {}, action) => {
     Object.freeze(state);
-    let newState = Object.assign({}, state)
+    let newState = Object.assign({}, state);
     switch (action.type){
         case RECEIVE_ALL_POSTS:
-            Object.values(action.data.posts).forEach(post => {
-                newState[post.id] = post
-            })
+            if(action.data.posts){
+                Object.values(action.data.posts).forEach(post => {
+                    newState[post.id] = post;
+                });
+            }
             return newState;
         case RECEIVE_POST:
             newState[action.post.id] = action.post;
