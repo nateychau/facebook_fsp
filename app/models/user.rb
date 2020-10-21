@@ -52,7 +52,7 @@ class User < ApplicationRecord
         class_name: :FriendRequest
 
     has_many :friendships,
-        foreign_key: :friend_a,
+        foreign_key: :user_id,
         primary_key: :id,
         class_name: :Friendship
 

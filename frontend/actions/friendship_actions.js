@@ -22,8 +22,8 @@ export const createFriendship = (friendship) => {
     return (
         FriendshipAPIUtil.createFriendship(friendship)
             .then(
-                friendship => dispatchEvent(receiveFriendship(friendship)),
-                err => dispatchEvent(receiveErrors(err))
+                friendship => dispatch(receiveFriendship(friendship)),
+                err => dispatch(receiveErrors(err))
             )
     )
 }
@@ -32,8 +32,8 @@ export const deleteFriendship = (friendship) => {
     return (
         FriendshipAPIUtil.deleteFriendship(friendship)
             .then(
-                friendship => dispatchEvent(deleteFriendshipObj(friendship)),
-                err => (dispatch(receiveErrors(err)))
+                friendship => dispatch(deleteFriendshipObj(friendship)),
+                err => dispatch(receiveErrors(err))
             )
     )
 }

@@ -22,8 +22,10 @@ export const friendshipReducer = (state = {}, action) => {
             return newState;
         case RECEIVE_FRIENDSHIP:
             newState[action.friendship.id] = action.friendship;
+            return newState;
         case DELETE_FRIENDSHIP:
-            delete newState[friendship.id]
+            delete newState[action.friendship.id]
+            return newState;
         default:
             return state;
     }

@@ -31,7 +31,6 @@ export const getUser = (id) => (dispatch) => {
 }
 
 export const getUsers = (idArr) => (dispatch) => {
-    console.log('get users fired')
     return (
         UserAPIUtil.getUsers({idArr: idArr})
             .then(
