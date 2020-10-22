@@ -104,6 +104,7 @@ class Profile extends React.Component{
                     wallUserId={this.props.user.id} 
                     icon={'cancel-request-icon'} 
                     text={'Cancel Request'}/>
+                    renderedPage = <Timeline user={this.props.user} currentUser={this.props.currentUser} notFriends={true}/>
                 }
                 else if(this.props.myIncomingRequests.includes(this.props.user.id)){
                     button = <RespondButton 
@@ -118,6 +119,7 @@ class Profile extends React.Component{
                     wallUserId={this.props.user.id}
                     icon={'add-friend-icon'} 
                     text={'Add Friend'}/>
+                    renderedPage = <Timeline user={this.props.user} currentUser={this.props.currentUser} notFriends={true}/>
                 }
                 return (
                     <div className='profile-page'>

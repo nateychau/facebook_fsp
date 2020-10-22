@@ -18,9 +18,7 @@ class Friends extends React.Component{
     render(){
         let friendArr = [];
         if (this.props.friendsList.length){
-            console.log('in conditional')
             for(let i = 0; i<10; i++){
-                console.log('in loop')
                 let id = this.props.friendsList[i];
                 if(id){
                     let component = <FriendIndexItem key={id} friendId={id} full={this.props.full}/>

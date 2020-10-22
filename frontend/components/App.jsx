@@ -14,6 +14,7 @@ const App = () => (
 
     <Modal/>
     <ProtectedRoute path="/users/:userId" component={PostModal} />
+    <ProtectedRoute exact path="/" component={PostModal} />
     <ProtectedRoute path="/users/:userId" component={ProfilePicModal}/>
     <AuthRoute exact path="/" component={LoginFormContainer}/>
     <ProtectedRoute path="/" component={Navbar}/>

@@ -59,7 +59,7 @@ class Wall extends React.Component{
                     Posts
                 </div>
                 <ul className="post-list">
-                    {postArr}
+                    {this.props.notFriends ? [] : postArr}
                 </ul>
             </div>
         )

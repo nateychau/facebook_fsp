@@ -1,5 +1,23 @@
 .feed-container{
     display: flex;
-    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     padding-top: 10px;
+    
+}
+
+.feed-container .post-button-container{
+    width: 40%;
+    margin-left: 20px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    padding-bottom: 30px;
+    padding-top: 30px;
+}
+
+.feed-container .post-list{
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }

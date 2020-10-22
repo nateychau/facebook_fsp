@@ -7,7 +7,7 @@ import { withRouter } from 'react-router-dom'
 const mSTP =  (state, ownProps) => {
     return ({
         currentUser: state.entities.users[state.session.currentUser],
-        wallUser: state.entities.users[ownProps.match.params.userId]
+        wallUser: ownProps.wallUser ? ownProps.wallUser : state.entities.users[ownProps.match.params.userId]
     })
 }
 

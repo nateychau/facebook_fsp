@@ -10,7 +10,7 @@ const mSTP = (state, ownProps) => {
         modal: state.ui.modal,
         errors: state.errors,
         currentUser: state.entities.users[state.session.currentUser],
-        wallUser: state.entities.users[ownProps.match.params.userId]
+        wallUser: ownProps.match.params.userId ? state.entities.users[ownProps.match.params.userId] : state.entities.users[state.session.currentUser]
     }
 }
 
@@ -66,6 +66,10 @@ class PostModal extends React.Component{
         if(this.props.modal !== prevProps.modal && Array.isArray(this.props.modal)){
             this.setState({body: this.props.modal[2]});
         }
+    }
+
+    componentWillUnmount(){
+        this.handlePostSubmit();
     }
 
     handlePostSubmit(){

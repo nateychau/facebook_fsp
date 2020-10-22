@@ -31,13 +31,15 @@ export default class Timeline extends React.Component{
                 </div>
                 {/* for right side scroll elements */}
                 <div className="profile-scroll">
+                {this.props.notFriends ? <></> :
                     <div className="post-button-container">
                         <div className="prof-pic-thumb-small">
                             <img src={this.props.currentUser.profile_photo}></img>
                         </div>
-                        <PostButton />
+                         <PostButton />
                     </div>
-                    <Wall />
+                }
+                    {this.props.notFriends ? <Wall notFriends={true}/> : <Wall/>}
                 </div>
             </>
         )

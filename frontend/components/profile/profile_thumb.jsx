@@ -2,7 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { openModal } from '../../actions/modal_actions';
-import { updateUserPhoto, getUser } from '../../actions/user_actions';
+import { updateUserPhoto, getUser, updateUser } from '../../actions/user_actions';
+import EditBio from './edit_bio';
 
 const mDTP = (dispatch) => ({
     openModal: () => dispatch(openModal('profilePic'))
@@ -31,6 +32,9 @@ class ProfileThumb extends React.Component{
                 </div>
                 <h2>{`${this.props.user.first_name} ${this.props.user.last_name}`}</h2>
                 <span>{this.props.user.bio}</span>
+                {this.props.user.id === this.props.currentUser.id ? 
+                <EditBio user={this.props.user}/>
+                : <></>}
             </div>
         )
     }

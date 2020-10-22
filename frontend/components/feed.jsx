@@ -5,6 +5,7 @@ import { getFriends } from '../reducers/selectors/friendship_selectors';
 import { getCurrentUserFeed } from '../actions/post_actions';
 import { getPostsByAuthorIdArray } from '../reducers/selectors/post_selectors';
 import PostItem from './posts/post_item';
+import PostButton from './posts/post_button';
 
 const mSTP = (state, ownProps) => {
     let myFriends = getFriends(state.session.currentUser, state.entities.friendships)
@@ -43,6 +44,12 @@ class Feed extends React.Component {
         }) : [];
         return (
             <div className="feed-container">
+                <div className="post-button-container">
+                    <div className="prof-pic-thumb-small">
+                        <img src={this.props.user.profile_photo}></img>
+                    </div>
+                    <PostButton wallUser={this.props.user}/>
+                </div>
                 <ul className="post-list">
                     {postArr}
                 </ul>

@@ -57,7 +57,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 98px;
+    min-height: 98px;
     width: 100%;
     background: #fff;
     z-index: 2;
@@ -151,4 +151,49 @@ button.cover-pic-btn:active{
     font-size: .9300rem;
     height: 35px;
     width: 160px;
+}
+
+
+.edit-link{
+    cursor: pointer;
+    color: #3a90f6;
+    font-weight: 600;
+    font-size: .9375rem;
+    line-height: 1.333;
+}
+
+.bio-edit{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.bio-edit textarea{
+    border-radius: 8px;
+    height: 60px;
+    width: 274px; 
+    border: 1px solid #d6d8dc;
+    background-color: #f0f2f5;
+    cursor: text;
+    display: flex;
+    justify-content: center;
+    resize: none;
+    font-family: inherit;
+    padding: 8px 12px;
+    outline: none;
+    font-weight: 600;
+    font-size: .9170rem;
+    line-height: 1.333;
+    text-align: center;
+}
+
+
+.bio-edit textarea:focus{
+    border: 1px solid #217cf3;
+    background-color: #fff;
+}
+                
+.bio-edit textarea:hover{
+    background-color: #d6d7da;
 }
