@@ -4,6 +4,7 @@ import Notifications from './notifications';
 import { connect } from 'react-redux';
 import { logout } from '../../actions/session/session_actions';
 import { getIncomingFriendRequests } from '../../reducers/selectors/friend_request_selectors';
+import { getCurrentUser } from '../../actions/user_actions'
 
 const mapStateToProps = (state) => {
     return ({
@@ -14,7 +15,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return ({
-        logout: () => dispatch(logout())
+        logout: () => dispatch(logout()),
+        getCurrentUser: () => dispatch(getCurrentUser())
     })
 }
 
@@ -31,13 +33,17 @@ class Navbar extends React.Component {
         }
         this.handleLogout = this.handleLogout.bind(this);
         this.handleOpenDropdown = this.handleOpenDropdown.bind(this);
-        this.handleCloseDropwdown = this.handleCloseDropdown.bind(this);
+        this.handleCloseDropdown = this.handleCloseDropdown.bind(this);
     }
 
     componentDidUpdate(prevProps){
         if(this.props.friendRequests.length > prevProps.friendRequests.length){
             this.setState({read: false, notifCount: this.props.friendRequests.length - prevProps.friendRequests.length});
         }
+    }
+
+    componentDidMount(){
+        this.props.getCurrentUser()
     }
     
     handleLogout(){
@@ -82,15 +88,15 @@ class Navbar extends React.Component {
                             {this.props.currentUser.first_name}
                         </button>
                     </Link>
-                    <button id={this.state.messages ? 'active-nav-button' : ''} onClick={this.handleOpenDropdown("messages")} onBlur={this.handleCloseDropwdown("messages")} className="util-btn"><div className="messages"></div></button>
+                    <button id={this.state.messages ? 'active-nav-button' : ''} onClick={this.handleOpenDropdown("messages")} onBlur={this.handleCloseDropdown("messages")} className="util-btn"><div className="messages"></div></button>
                     {this.state.messages ? <div className="util-container">
                         <div>Messenger</div>
                         <div>You have no new messages</div>
                     </div> : <></>}
-                    <button id={this.state.notif ? 'active-nav-button' : ''} onClick={this.handleOpenDropdown("notif")} onBlur={this.handleCloseDropwdown("notif")} className="util-btn"><div className="notifications"></div></button>
+                    <button id={this.state.notif ? 'active-nav-button' : ''} onClick={this.handleOpenDropdown("notif")} onBlur={this.handleCloseDropdown("notif")} className="util-btn"><div className="notifications"></div></button>
                     {this.state.notifCount ? <div className='notif-count'>{this.state.notifCount}</div> : <></>}
                     {this.state.notif ? <Notifications requests={this.props.friendRequests} /> : <></>}
-                    <button id={this.state.logout ? 'active-nav-button' : ''} onClick={this.handleOpenDropdown("logout")} onBlur={this.handleCloseDropwdown("logout")} className="util-btn"><div className="dropdown"></div></button>
+                    <button id={this.state.logout ? 'active-nav-button' : ''} onClick={this.handleOpenDropdown("logout")} onBlur={this.handleCloseDropdown("logout")} className="util-btn"><div className="dropdown"></div></button>
                     {this.state.logout ? <div className="util-container">
                         <button onMouseDown={this.handleLogout} className="logout-btn"><div className="icon-container"><div className="logout-icon"></div></div><div>Log out</div></button>
                     </div> : <></>}

@@ -111,6 +111,40 @@
     font-size: 1.3rem;
 }
 
+.add-friend-icon{
+    background-image: image-url('add_friend.png');
+    height: 16px;
+    width: 16px;
+    margin-right: 8px;
+    margin-left: 5px;
+}
+
+.cancel-request-icon{
+    background-image: image-url('cancel_request.png');
+    height: 16px;
+    width: 16px;
+    margin-right: 8px;
+    margin-left: 5px;
+}
+
+.friend-icon{
+    background-image: image-url('friended.png');
+    height: 16px;
+    width: 16px;
+    margin-right: 8px;
+    margin-left: 5px;
+}
+
+.friended-fill-icon{
+    background-image: image-url('friended.png');
+    height: 16px;
+    width: 16px;
+    margin-right: 8px;
+    margin-left: 5px;
+    // fill: #1877f2;
+}
+
+
 //POST ICONS
 
 .more-container{

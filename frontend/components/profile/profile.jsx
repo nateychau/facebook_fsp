@@ -8,13 +8,21 @@ import About from './about_page';
 import Friends from './friends';
 import Photos from './photos';
 import Timeline from './timeline';
-// import MainProfile from './main_profile';
+import { getFriendships, getFriends } from '../../reducers/selectors/friendship_selectors';
+import { getOutgoingFriendRequests, getIncomingFriendRequests } from '../../reducers/selectors/friend_request_selectors';
+import { SendRequest, CancelRequest } from '../friends/friend_request_button';
+import RespondButton from '../friends/respond_button';
 
 const mSTP = (state, ownProps) => {
     return ({
         user: state.entities.users[ownProps.match.params.userId],
         errors: state.errors.general,
-        currentUser: state.entities.users[state.session.currentUser]
+        currentUser: state.entities.users[state.session.currentUser],
+        friendsList: getFriends(ownProps.match.params.userId, state.entities.friendships),
+        myPendingRequests: getOutgoingFriendRequests(state.entities.friendRequests, state.session.currentUser),
+        myIncomingRequests: getIncomingFriendRequests(state.entities.friendRequests, state.session.currentUser),
+        myFriends: getFriends(state.session.currentUser, state.entities.friendships)
+        // friendships: getFriendships(ownProps.match.params.userId, state.entities.friendships)
     })
 }
 
@@ -35,7 +43,9 @@ class Profile extends React.Component{
         }
 
         componentDidMount(){
-            this.props.getUser(this.props.match.params.userId)
+            if(!this.props.user){
+                this.props.getUser(this.props.match.params.userId)
+            }
         }
 
         componentDidUpdate(prevProps){
@@ -75,6 +85,41 @@ class Profile extends React.Component{
             if(!this.props.user){
                 return null
             } else {
+                let button;
+                if(this.props.currentUser.id === this.props.user.id){
+                    button = <button className="profile-nav-button" onClick={this.handlePageToRender('about')}>
+                    <div className="edit-icon"></div>
+                        Edit Profile
+                    </button>
+                } 
+                else if(this.props.myFriends.includes(this.props.user.id)){
+                    button = <RespondButton 
+                    currentUserId={this.props.currentUser.id} 
+                    wallUserId={this.props.user.id}
+                    text={''}
+                    type={'friends'}/>
+                }
+                else if(this.props.myPendingRequests.includes(this.props.user.id)){
+                    button = <CancelRequest
+                    currentUserId={this.props.currentUser.id} 
+                    wallUserId={this.props.user.id} 
+                    icon={'cancel-request-icon'} 
+                    text={'Cancel Request'}/>
+                }
+                else if(this.props.myIncomingRequests.includes(this.props.user.id)){
+                    button = <RespondButton 
+                    currentUserId={this.props.currentUser.id} 
+                    wallUserId={this.props.user.id}
+                    text={'Respond'}
+                    type={'respond'}/>
+                }
+                else{
+                    button = <SendRequest 
+                    currentUserId={this.props.currentUser.id} 
+                    wallUserId={this.props.user.id}
+                    icon={'add-friend-icon'} 
+                    text={'Add Friend'}/>
+                }
                 return (
                     <div className='profile-page'>
                         <Header user={this.props.user} currentUser={this.props.currentUser}/>
@@ -86,12 +131,7 @@ class Profile extends React.Component{
                                     <div className={this.state.page === 'friends' ? 'active-profile-page' : ''}onClick={this.handlePageToRender('friends')}><p>Friends</p></div>
                                     <div className={this.state.page === 'photos' ? 'active-profile-page' : ''}onClick={this.handlePageToRender('photos')}><p>Photos</p></div>
                                 </div>
-                                {this.props.currentUser.id === this.props.user.id ? 
-                                <button className="profile-nav-button" onClick={this.handlePageToRender('about')}>
-                                    <div className="edit-icon"></div>
-                                    Edit Profile
-                                </button>
-                                : <></>}
+                                {button}
                             </div>
                         </div>
                         <div className="profile-main">

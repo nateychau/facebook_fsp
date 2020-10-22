@@ -1,5 +1,6 @@
 import * as FriendshipAPIUtil from '../util/friendship_api_util';
 import { receiveErrors } from './session/session_actions';
+import { findFriendshipId } from '../reducers/selectors/friendship_selectors';
 
 export const RECEIVE_FRIENDSHIP = 'RECEIVE_FRIENDSHIP';
 export const DELETE_FRIENDSHIP = 'DELETE_FRIENDSHIP';
@@ -18,7 +19,7 @@ const deleteFriendshipObj = (friendship) => {
     })
 }
 
-export const createFriendship = (friendship) => {
+export const createFriendship = (friendship) => (dispatch) => {
     return (
         FriendshipAPIUtil.createFriendship(friendship)
             .then(
@@ -28,9 +29,20 @@ export const createFriendship = (friendship) => {
     )
 }
 
-export const deleteFriendship = (friendship) => {
+export const deleteFriendship = (friendship) => (dispatch) => {
     return (
         FriendshipAPIUtil.deleteFriendship(friendship)
+            .then(
+                friendship => dispatch(deleteFriendshipObj(friendship)),
+                err => dispatch(receiveErrors(err))
+            )
+    )
+}
+
+export const deleteFriendshipWithState = (user_id, friend_id) => (dispatch, getState) => {
+    let friendshipId = findFriendshipId(getState().entities.friendships, user_id, friend_id);
+    return (
+        FriendshipAPIUtil.deleteFriendship(friendshipId)
             .then(
                 friendship => dispatch(deleteFriendshipObj(friendship)),
                 err => dispatch(receiveErrors(err))

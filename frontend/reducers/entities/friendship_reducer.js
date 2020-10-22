@@ -1,7 +1,7 @@
 import { RECEIVE_CURRENT_USER } from '../../actions/session/session_actions';
 import { RECEIVE_FRIENDSHIP, DELETE_FRIENDSHIP } from '../../actions/friendship_actions';
 import { RECEIVE_USER } from '../../actions/user_actions';
-
+import { findFriendshipId } from '../selectors/friendship_selectors'; 
 export const friendshipReducer = (state = {}, action) => {
     Object.freeze(state);
     let newState = Object.assign({}, state)
@@ -24,6 +24,10 @@ export const friendshipReducer = (state = {}, action) => {
             newState[action.friendship.id] = action.friendship;
             return newState;
         case DELETE_FRIENDSHIP:
+            let correspondingFriendship = findFriendshipId(newState, action.friendship.friend_id, action.friendship.user_id);
+            if (correspondingFriendship){
+                delete newState[correspondingFriendship];
+            }
             delete newState[action.friendship.id]
             return newState;
         default:
