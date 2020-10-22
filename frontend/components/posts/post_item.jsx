@@ -9,6 +9,8 @@ import { deletePost } from '../../actions/post_actions';
 import { openModal } from '../../actions/modal_actions';
 import { getUser } from '../../actions/user_actions';
 import LikeButton from './like_button';
+import { getLikesOfLikeable } from '../../reducers/selectors/like_selectors';
+import Reactions from './reactions';
 
 const mSTP = (state, ownProps) => {
     let wallId = ownProps.post.wall_id//ownProps.match.params.userId
@@ -16,7 +18,8 @@ const mSTP = (state, ownProps) => {
         currentUser: state.entities.users[state.session.currentUser],
         wallUser: state.entities.users[wallId],
         comments: getCommentsByPost(state.entities.comments, ownProps.post.id),
-        author: state.entities.users[ownProps.post.author_id]
+        author: state.entities.users[ownProps.post.author_id],
+        likes: getLikesOfLikeable(state.entities.likes, ownProps.post.id, "Post")
     })
 }
 
@@ -151,7 +154,7 @@ class PostItem extends React.Component{
                 </div>
                 <div className="post-item-body">{this.props.post.body}</div>
                 <div className="reaction-bar">
-                    {/* add like display here */}
+                    <Reactions likes={this.props.likes}/>
                 </div>
                 <div className="option-bar">
                     <LikeButton likeable_id={this.props.post.id} likeable_type={'Post'} user_id={this.props.currentUser.id} />

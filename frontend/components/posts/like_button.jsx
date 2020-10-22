@@ -40,6 +40,11 @@ class LikeButton extends React.Component{
 
 
     render(){
+        if(this.props.likeable_type === 'Comment'){
+            return (
+                <div id={this.props.like ? 'does-like' : ''} className='comment-like' onClick={this.toggleLike}>Like</div>
+            )
+        }
         return (
             <button id={this.props.like ? 'does-like' : ''} className='option-btn' onClick={this.toggleLike}>
                 <i className="far fa-thumbs-up"></i>

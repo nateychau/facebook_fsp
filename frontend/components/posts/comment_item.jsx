@@ -4,13 +4,16 @@ import { Link } from 'react-router-dom';
 import { editComment, deleteComment } from '../../actions/comment_actions';
 import { withRouter } from 'react-router-dom';
 import { getUser } from '../../actions/user_actions';
+import LikeButton from './like_button';
+import { getLikesOfLikeable } from '../../reducers/selectors/like_selectors';
+import CommentLikes from './comment_likes';
 
 const mSTP = (state, ownProps) => {
     let wallId = ownProps.match.params.userId;
     return ({
         author: state.entities.users[ownProps.comment.author_id],
         currentUser: state.entities.users[state.session.currentUser],
-        // wallUser: state.entities.users[wallId]
+        likes: getLikesOfLikeable(state.entities.likes, ownProps.comment.id, "Comment")
     })
 }
 
@@ -103,8 +106,15 @@ class CommentItem extends React.Component{
                     <div className="comment-item-detail">
                         <Link to={`/users/${this.props.author.id}`}><div>{`${this.props.author.first_name} ${this.props.author.last_name}`}</div></Link>
                         <div className="comment-item-body">{this.props.comment.body}</div>
+                        <CommentLikes numLikes={this.props.likes.length}/>
                     </div>
                     <div className='comment-options'>
+                        <LikeButton likeable_id={this.props.comment.id} likeable_type={'Comment'} user_id={this.props.currentUser.id} />
+                    {/* COME BACK TO THIS FOR COMMENT REPLIES */}
+                    {/* <button className='option-btn' onClick={this.focusComment}>
+                        <i className="far fa-comment-alt"></i>
+                        <div>Comment</div>
+                    </button> */}
                         <div className='comment-time'>{timestamp}</div>
                     </div>
                 </div>
