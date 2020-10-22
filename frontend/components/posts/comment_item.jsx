@@ -86,7 +86,8 @@ class CommentItem extends React.Component{
         if(!this.props.author){
             return null;
         }
-        let timestamp = new Date(this.props.comment.created_at).toDateString()
+        let timestamp = new Date(this.props.comment.created_at).toDateString();
+        timestamp = timestamp.split(' ').slice(1,3).join(' ');
         return (
             <li className="comment-item">
                 <div className="prof-pic-thumb-comment">
@@ -103,7 +104,9 @@ class CommentItem extends React.Component{
                         <Link to={`/users/${this.props.author.id}`}><div>{`${this.props.author.first_name} ${this.props.author.last_name}`}</div></Link>
                         <div className="comment-item-body">{this.props.comment.body}</div>
                     </div>
-                    <div className='comment-time'>{timestamp}</div>
+                    <div className='comment-options'>
+                        <div className='comment-time'>{timestamp}</div>
+                    </div>
                 </div>
                 }
                 {this.props.currentUser.id === this.props.comment.author_id || this.props.currentUser.id === this.props.wallUser.id ? 

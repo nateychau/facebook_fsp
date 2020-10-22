@@ -1,6 +1,6 @@
 import { RECEIVE_ALL_POSTS, CLEAR_POSTS, DELETE_POST } from '../../actions/post_actions';
 import { RECEIVE_COMMENT, DELETE_COMMENT } from '../../actions/comment_actions';
-import { getCommentsByPost } from '../selectors/comment_selectors'
+import { getCommentIdsByPost } from '../selectors/comment_selectors'
 
 export const commentReducer = (state = {}, action) => {
     Object.freeze(state);
@@ -16,10 +16,15 @@ export const commentReducer = (state = {}, action) => {
         case CLEAR_POSTS:
             return {};
         case DELETE_POST:
-            let comments = getCommentsByPost(newState, action.post.id);
-            comments.forEach(comment => {
-                delete newState[comment.id];
-            })
+            if(action.comments){
+                action.comments.forEach(commentId =>{
+                    delete newState[commentId]
+                })
+            }
+            // let comments = getCommentIdsByPost(newState, action.post.id);
+            // comments.forEach(commentId => {
+            //     delete newState[commentId];
+            // })
             return newState;
         case RECEIVE_COMMENT:
             newState[action.comment.id] = action.comment;

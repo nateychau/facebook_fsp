@@ -8,6 +8,7 @@ import { publishComment } from '../../actions/comment_actions';
 import { deletePost } from '../../actions/post_actions';
 import { openModal } from '../../actions/modal_actions';
 import { getUser } from '../../actions/user_actions';
+import LikeButton from './like_button';
 
 const mSTP = (state, ownProps) => {
     let wallId = ownProps.post.wall_id//ownProps.match.params.userId
@@ -36,12 +37,14 @@ class PostItem extends React.Component{
             body: '',
             more: false
         }
+        this.commentField = React.createRef();
         this.handleInput = this.handleInput.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleMoreOpen = this.handleMoreOpen.bind(this);
         this.handleMoreClose = this.handleMoreClose.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
         this.handleEdit = this.handleEdit.bind(this);
+        this.focusComment = this.focusComment.bind(this);
     }
 
     componentDidMount(){
@@ -91,6 +94,10 @@ class PostItem extends React.Component{
         this.setState({more: false});
     }
 
+    focusComment(){
+        this.commentField.current.focus();
+    }
+
     render(){
         if(!this.props.author || !this.props.wallUser){
             return null
@@ -109,7 +116,13 @@ class PostItem extends React.Component{
                             <img src={this.props.author.profile_photo}></img>
                         </div>
                         <div className="post-item-meta">
-                            <Link to={`/users/${this.props.author.id}`}><div>{`${this.props.author.first_name} ${this.props.author.last_name}`}</div></Link>
+                            <div>
+                                <Link to={`/users/${this.props.author.id}`}><div>{`${this.props.author.first_name} ${this.props.author.last_name}`}</div></Link>
+                                {this.props.author.id === this.props.wallUser.id ? <></> : <> 
+                                <div className="arrow-right-icon"></div>
+                                <Link to={`/users/${this.props.wallUser.id}`}><div>{`${this.props.wallUser.first_name} ${this.props.wallUser.last_name}`}</div></Link>
+                                </>}
+                                </div>
                             <div>{timestamp}</div>
                         </div>
                     </div>
@@ -137,8 +150,16 @@ class PostItem extends React.Component{
                     </div> : <></>}
                 </div>
                 <div className="post-item-body">{this.props.post.body}</div>
-                <div className="reaction-bar"></div>
-                <div className="option-bar"></div>
+                <div className="reaction-bar">
+                    {/* add like display here */}
+                </div>
+                <div className="option-bar">
+                    <LikeButton likeable_id={this.props.post.id} likeable_type={'Post'} user_id={this.props.currentUser.id} />
+                    <button className='option-btn' onClick={this.focusComment}>
+                        <i className="far fa-comment-alt"></i>
+                        <div>Comment</div>
+                    </button>
+                </div>
                 <ul className="comment-list">
                     {commentArr}
                 </ul>
@@ -146,7 +167,7 @@ class PostItem extends React.Component{
                     <div className="prof-pic-thumb-comment">
                         <img src={this.props.currentUser.profile_photo}></img>
                     </div>
-                    <input type='text' value={this.state.body} placeholder="Write a comment..." onChange={this.handleInput} onKeyDown={this.handleSubmit}></input>
+                    <input ref={this.commentField} type='text' value={this.state.body} placeholder="Write a comment..." onChange={this.handleInput} onKeyDown={this.handleSubmit}></input>
                 </div>
             </li>
         )

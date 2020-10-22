@@ -1,7 +1,7 @@
 import * as PostAPIUtil from '../util/post_api_util';
 import { receiveErrors } from './session/session_actions';
 import { getFriends } from '../reducers/selectors/friendship_selectors';
-
+import { getCommentIdsByPost } from '../reducers/selectors/comment_selectors';
 import { getCurrentUser } from './user_actions';
 
 export const RECEIVE_POST = "RECEIVE_POST";
@@ -23,10 +23,11 @@ const receiveAllPosts = (data) => {
     })
 }
 
-const deletePostObj = (post) => {
+const deletePostObj = (post, comments) => {
     return ({
         type: DELETE_POST,
-        post
+        post,
+        comments 
     })
 }
 
@@ -48,11 +49,11 @@ export const publishPost = (post) => (dispatch) => {
 }
 
 //DESTROY PATH RENDERS A POST OBJ
-export const deletePost = (postId) => (dispatch) => {
+export const deletePost = (postId) => (dispatch, getState) => {
     return (
         PostAPIUtil.deletePost(postId)
             .then(
-                post => dispatch(deletePostObj(post)),
+                post => dispatch(deletePostObj(post, getCommentIdsByPost(getState().entities.comments, post.id))),
                 err => dispatch(receiveErrors(err))
             )
     )
