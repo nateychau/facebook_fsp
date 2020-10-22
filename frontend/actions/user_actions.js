@@ -4,6 +4,7 @@ import { receiveCurrentUser } from './session/session_actions';
 
 export const RECEIVE_USER = 'RECEIVE_USER';
 export const RECEIVE_USERS = 'RECEIVE_USERS';
+export const REQUEST_USER = 'REQUEST_USER'
 
 const receiveUser = (data) => {
     return ({
@@ -16,6 +17,12 @@ const receiveUsers = (users) => {
     return ({
         type: RECEIVE_USERS,
         users
+    })
+}
+
+const requestUser = () => {
+    return ({
+        type: REQUEST_USER
     })
 }
 
@@ -61,6 +68,7 @@ export const updateUserPhoto = (user) => (dispatch) => {
 }
 
 export const getCurrentUser = () => (dispatch, getState) => {
+    // dispatch(requestUser());
     return (
         UserAPIUtil.getUser(getState().session.currentUser)
             .then(
@@ -69,3 +77,14 @@ export const getCurrentUser = () => (dispatch, getState) => {
             )
     )
 }
+
+// export const fetchUser = (id) => (dispatch) => {
+//     dispatch(requestUser());
+//     return (
+//         UserAPIUtil.getUser(id)
+//             .then(
+//                 user => dispatch(receiveUser(user)),
+//                 err => dispatch(receiveErrors(err))
+//             )
+//     )
+// }

@@ -1,16 +1,26 @@
 import React from 'react'
 import { connect } from 'react-redux';
-import { getCurrentUser } from '../actions/user_actions';
+import { getCurrentUser, fetchUser } from '../actions/user_actions';
+import { getFriends } from '../reducers/selectors/friendship_selectors';
+import { getCurrentUserFeed } from '../actions/post_actions';
+import { getPostsByAuthorIdArray } from '../reducers/selectors/post_selectors';
+import PostItem from './posts/post_item';
 
-const mSTP = (state) => {
+const mSTP = (state, ownProps) => {
+    let myFriends = getFriends(state.session.currentUser, state.entities.friendships)
+    // myFriends = myFriends.push(state.session.currentUser);
     return ({
-        user: state.entities.users[state.session.currentUser]
+        user: state.entities.users[state.session.currentUser],
+        isFetching: state.ui.isFetching,
+        // myFriends: getFriends(state.session.currentUser, state.entities.friendships),
+        posts: getPostsByAuthorIdArray(state.entities.posts, myFriends, state.session.currentUser)
     })
 }
 
 const mDTP = (dispatch) => {
     return ({
-        getCurrentUser: () => dispatch(getCurrentUser())
+        // getCurrentUser: () => dispatch(getCurrentUser()),
+        getCurrentUserFeed: () => dispatch(getCurrentUserFeed())
     })
 }
 
@@ -20,12 +30,23 @@ class Feed extends React.Component {
     }
 
     componentDidMount(){
-        this.props.getCurrentUser();
+        // this.props.getCurrentUser().then
+        this.props.getCurrentUserFeed();
     }
 
     render(){
+        if(!this.props.user){
+            return null
+        }
+        const postArr = this.props.posts.length ? this.props.posts.reverse().map(post => {
+            return <PostItem post={post} key={post.id}/>
+        }) : [];
         return (
-            <div className="feed-container">You have no friends :(</div>
+            <div className="feed-container">
+                <ul className="post-list">
+                    {postArr}
+                </ul>
+            </div>
         )
     }
 }

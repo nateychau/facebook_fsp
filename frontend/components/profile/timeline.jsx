@@ -1,6 +1,7 @@
 import React from 'react'
 import Wall from './wall';
 import PostButton from '../posts/post_button';
+import Friends from './friends';
 
 export default class Timeline extends React.Component{
     constructor(props){
@@ -25,7 +26,7 @@ export default class Timeline extends React.Component{
                         {/* may need to refactor into components */}
                     </div>
                     <div className="profile-friends">
-                        <div>Friends</div>
+                        <Friends user={this.props.user} full={false}/>
                     </div>
                 </div>
                 {/* for right side scroll elements */}

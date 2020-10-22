@@ -10,7 +10,7 @@ const mSTP = (state, ownProps) => {
     return ({
         author: state.entities.users[ownProps.comment.author_id],
         currentUser: state.entities.users[state.session.currentUser],
-        wallUser: state.entities.users[wallId]
+        // wallUser: state.entities.users[wallId]
     })
 }
 

@@ -1,5 +1,8 @@
 import * as PostAPIUtil from '../util/post_api_util';
-import { receiveErrors } from './session/session_actions'
+import { receiveErrors } from './session/session_actions';
+import { getFriends } from '../reducers/selectors/friendship_selectors';
+
+import { getCurrentUser } from './user_actions';
 
 export const RECEIVE_POST = "RECEIVE_POST";
 export const RECEIVE_ALL_POSTS = "RECEIVE_ALL_POSTS";
@@ -74,3 +77,28 @@ export const getPosts = (filter) => (dispatch) => {
             )
     )
 }
+
+// export const getPostsByFriends = () => (dispatch, getState) => {
+//     let myFriends = getFriends(getState().session.currentUser, getState().entities.friendships);
+//     return (
+//         PostAPIUtil.getPosts({userId: myFriends})
+//             .then(
+//                 posts => dispatch(receiveAllPosts(posts)),
+//                 err => dispatch(receiveErrors(err))
+//             )
+//     )
+// }
+
+export const getCurrentUserFeed = () => (dispatch, getState) => {
+    dispatch(getCurrentUser())
+    return getPosts({userId: getState().session.currentUser})(dispatch);
+}
+
+// export const updateFilter = (filter, value) => (dispatch, getState) => {
+//     dispatch(changeFilter(filter, value));
+//     return getPosts(getState().ui.filters)(dispatch)
+//       // .then(()=>{
+//       //   dispatch(getUsers(getAuthors(getState().entities.posts, getState().entities.comments)))
+//       // })
+//   };
+  

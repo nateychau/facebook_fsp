@@ -28,22 +28,24 @@ class Api::PostsController < ApplicationController
     end
 
     def index
-        #COME BACK TO THIS TO ADD FILTERING
-        if wall_id
+        #COME BACK TO THIS TO ADD FILTERING 
+        if wall_id != 0 
             @posts = Post.where("wall_id = #{wall_id}").order("created_at DESC")
-        #UNCOMMENT AFTER ADDING FRIENDS TABLE AND ASSOCIATIONS
-        # elsif user_id 
-        #     current_user = User.find(user_id)
-        #     friend_id_array = current_user.friends.map do |friend|
-        #         friend.id
-        #     end
-        #     @posts = Post.where(author_id: friend_id_array)
+            #UNCOMMENT AFTER ADDING FRIENDS TABLE AND ASSOCIATIONS
+        elsif user_id != 0
+            current_user = User.find(user_id)
+            friend_id_array = current_user.friends.map do |friend|
+                friend.id
+            end
+            friend_id_array << user_id
+            @posts = Post.where(author_id: friend_id_array)
         else
             @posts = Post.all
         end 
         render :index
     end
 
+    #don't think i still need this
     def wall_id
         params[:wallId].to_i
     end

@@ -18,3 +18,13 @@ export const getPostsByWall = ( posts, wall_id ) => {
 	}
 	return result;
 };
+
+export const getPostsByAuthorIdArray = (posts, idArr, currentUserId) => {
+	let result = [];
+	for (let id in posts) {
+		if(idArr.includes(posts[id].author_id) || posts[id].author_id === parseInt(currentUserId)){
+			result.push(posts[id])
+		}
+	}
+	return result;
+}

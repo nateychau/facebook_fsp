@@ -43,9 +43,7 @@ class Profile extends React.Component{
         }
 
         componentDidMount(){
-            if(!this.props.user){
-                this.props.getUser(this.props.match.params.userId)
-            }
+            this.props.getUser(this.props.match.params.userId)
         }
 
         componentDidUpdate(prevProps){
@@ -67,6 +65,9 @@ class Profile extends React.Component{
         }
 
         render(){
+            if(!this.props.user){
+                return null
+            }
             let renderedPage;
             if(this.state.page === 'timeline'){
                 renderedPage = <Timeline user={this.props.user} currentUser={this.props.currentUser}/>
@@ -74,17 +75,15 @@ class Profile extends React.Component{
             else if(this.state.page === 'about'){
                 renderedPage = <About user={this.props.user} currentUser={this.props.currentUser}/> 
             } else if(this.state.page === 'friends'){
-                renderedPage = <Friends user={this.props.user} />
+                renderedPage = <Friends user={this.props.user} full={true}/>
             }else if(this.state.page === 'photos'){
                 renderedPage = <Photos user={this.props.user} />
             }
-
+            
             if(this.props.errors.length){
                 return <Redirect to="/" />
             }
-            if(!this.props.user){
-                return null
-            } else {
+             else {
                 let button;
                 if(this.props.currentUser.id === this.props.user.id){
                     button = <button className="profile-nav-button" onClick={this.handlePageToRender('about')}>

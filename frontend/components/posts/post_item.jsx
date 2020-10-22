@@ -10,7 +10,7 @@ import { openModal } from '../../actions/modal_actions';
 import { getUser } from '../../actions/user_actions';
 
 const mSTP = (state, ownProps) => {
-    let wallId = ownProps.match.params.userId
+    let wallId = ownProps.post.wall_id//ownProps.match.params.userId
     return({
         currentUser: state.entities.users[state.session.currentUser],
         wallUser: state.entities.users[wallId],
@@ -25,6 +25,7 @@ const mDTP = (dispatch, ownProps) => {
         deletePost: () => dispatch(deletePost(ownProps.post.id)),
         openModal: () => dispatch(openModal(['edit', ownProps.post.id, ownProps.post.body])),
         getAuthor: () => dispatch(getUser(ownProps.post.author_id)),
+        getUser: (id) => dispatch(getUser(id)),
     })
 }
 
@@ -46,6 +47,9 @@ class PostItem extends React.Component{
     componentDidMount(){
         if(!this.props.author){
             this.props.getAuthor();
+        }
+        if(!this.props.wallUser){
+            this.props.getUser(this.props.post.wall_id);
         }
     }
 
@@ -88,13 +92,13 @@ class PostItem extends React.Component{
     }
 
     render(){
-        if(!this.props.author){
+        if(!this.props.author || !this.props.wallUser){
             return null
         }
         let timestamp = new Date(this.props.post.created_at).toDateString()
         let commentArr = this.props.comments ?
             this.props.comments.map(comment => {
-                return <CommentItem key={comment.id} comment={comment}/>
+                return <CommentItem key={comment.id} comment={comment} wallUser={this.props.wallUser}/>
             })
         : []
         return (

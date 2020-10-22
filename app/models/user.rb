@@ -56,9 +56,9 @@ class User < ApplicationRecord
         primary_key: :id,
         class_name: :Friendship
 
-    # has_many :friends,
-    #     through: :friendships, 
-    #     source: :friend_b
+    has_many :friends,
+        through: :friendships, 
+        source: :friend
 
 
     def self.find_by_credentials(email, password)
