@@ -167,7 +167,7 @@ yatu = User.create({
     school: "Groovy Kids"
 })
 yatu.cover_photo.attach(io: open('https://facebewk-seeds.s3-us-west-1.amazonaws.com/IMG_9065.JPG'), filename: 'yatu_cover.jpg')
-yatu.profile_photo.attacH(io: open('https://facebewk-seeds.s3-us-west-1.amazonaws.com/IMG_9148.JPG'), filename: 'yatu_pic.jpg')
+yatu.profile_photo.attach(io: open('https://facebewk-seeds.s3-us-west-1.amazonaws.com/IMG_9148.JPG'), filename: 'yatu_pic.jpg')
 
 p1 = Post.create({
     body: "Caught a beautiful sunrise in Bryce Canyon!",
