@@ -56,6 +56,22 @@
     padding: 0 0;
 }
 
+.events-icon{
+    background-image: image-url('events.png');
+    height: 28px;
+    width: 28px;
+    background-size: 28px 28px;
+    margin-right: 5px;
+}
+
+.bday-icon{
+    background-image: image-url('bday.png');
+    height: 28px;
+    width: 28px;
+    background-size: 28px 28px;
+    margin-right: 5px;
+}
+
 // .fa-github{
 //     height: 40px;
 //     width: 40px;

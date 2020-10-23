@@ -33,6 +33,8 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    // top: -450px;
+    align-self: flex-start;
 }
 
 .profile-intro, .profile-photos, .profile-friends{

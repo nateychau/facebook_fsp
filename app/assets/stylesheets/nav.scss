@@ -56,18 +56,27 @@
 
 .nav-center{
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: flex-end;
     position: relative;
-    left: 3.5%;
+    // left: 3.5%;
 }
 
 .nav-right{
     display: flex;
-    justify-content: space-between; 
+    // justify-content: space-between; 
+    justify-content: flex-end;
     align-items: center;
+    width: 33%;
 }
 
+.nav-center{
+    width: 33%
+}
+
+.nav-left{
+    width: 33%
+}
 
 .prof-pic-thumb-smallest{
     height: 25px;

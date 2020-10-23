@@ -1,23 +1,70 @@
+.feed-page{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    align-items: flex-start;
+}
+
 .feed-container{
     display: flex;
     align-items: center;
     flex-direction: column;
-    padding-top: 10px;
+    // padding-top: 10px;
+    width: 60%
     
 }
 
 .feed-container .post-button-container{
-    width: 40%;
+    width: 60%;
     margin-left: 20px;
     margin-bottom: 30px;
-    margin-top: 30px;
+    margin-top: 10px;
     padding-bottom: 30px;
     padding-top: 30px;
 }
 
 .feed-container .post-list{
-    width: 40%;
+    width: 60%;
     display: flex;
     justify-content: center;
     flex-direction: column;
+}
+
+.feed-side-bar{
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    
+    flex-grow: 0;
+    position: sticky;
+    top: 72px;
+    width: 15%;
+}
+
+.feed-side-sub{
+    border-bottom: 1px solid #cfd3da;
+    border-top: 1px solid #cfd3da;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0;
+}
+
+.side-bar-header{
+    display: flex;
+    padding-bottom: 10px;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.side-bar-header div{
+    font-weight: 600;
+    line-height: 1.1765;
+    font-size: 1.0625rem;
+    color: #828282;
+}
+
+.side-bar-text{
+    font-size: .9375rem;
+    line-height: 1.333;
+    color: #828282;
 }

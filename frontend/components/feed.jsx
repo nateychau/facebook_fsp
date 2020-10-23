@@ -43,16 +43,35 @@ class Feed extends React.Component {
             return <PostItem post={post} key={post.id}/>
         }) : [];
         return (
-            <div className="feed-container">
-                <div className="post-button-container">
-                    <div className="prof-pic-thumb-small">
-                        <img src={this.props.user.profile_photo}></img>
+            <div className='feed-page'>
+                <div className='feed-side-bar'></div>
+                <div className="feed-container">
+                    <div className="post-button-container">
+                        <div className="prof-pic-thumb-small">
+                            <img src={this.props.user.profile_photo}></img>
+                        </div>
+                        <PostButton wallUser={this.props.user}/>
                     </div>
-                    <PostButton wallUser={this.props.user}/>
+                    <ul className="post-list">
+                        {postArr}
+                    </ul>
                 </div>
-                <ul className="post-list">
-                    {postArr}
-                </ul>
+                <div className='feed-side-bar'>
+                    <div className='feed-side-sub'>
+                        <div className='side-bar-header'>
+                            <div className="bday-icon"></div>
+                            <div>Birthdays</div>
+                        </div>
+                        <div className='side-bar-text'>No birthdays today</div>
+                    </div>
+                    <div className='feed-side-sub'>
+                        <div className='side-bar-header'>
+                            <div className="events-icon"></div>
+                            <div>Events</div>
+                        </div>
+                        <div className='side-bar-text'>No upcoming events</div>
+                    </div>
+                </div>
             </div>
         )
     }
