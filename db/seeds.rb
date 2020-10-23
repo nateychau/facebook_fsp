@@ -564,7 +564,7 @@ p19 = Post.create({
     author_id: lasa.id,
     wall_id:  lasa.id
 })
-p19.photo.atach(io: open('https://facebewk-seeds.s3-us-west-1.amazonaws.com/IMG_9596.JPG'), filename: 'p19.jpg')
+p19.photo.attach(io: open('https://facebewk-seeds.s3-us-west-1.amazonaws.com/IMG_9596.JPG'), filename: 'p19.jpg')
 l31 = Like.create({
     likeable_id: p19.id,
     likeable_type: "Post",
