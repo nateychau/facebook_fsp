@@ -100,3 +100,8 @@ render(){
 
 I also had to decide between fetching all data for profiles up front in a high-level component, or to fetch a smaller amount of meta data, and pass that data down to children components to handle more specific fetching. I decided to go with the second option, as this avoided refetching data that might already be available in the Redux store. 
 
+## Future Plans
+- Optimize for mobile (media-queries)
+- Messaging functionality
+- Notifications for comments and likes 
+- Groups 
