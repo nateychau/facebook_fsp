@@ -130,6 +130,7 @@
     height: 43px;
     display: flex;
     align-items: center;
+    position: relative;
 }
 
 .option-bar{
@@ -178,8 +179,35 @@
     padding-left: 5px;
 }
 
+.like-bar:hover{
+    cursor: normal;
+}
+
 .like-text{
     color: #65676b;
     font-size: .9375rem;
+    line-height: 1.333;
+}
+
+.like-text:hover{
+    cursor: normal;
+}
+
+.like-hover-list{
+    position: absolute;
+    opacity: 0.75;
+    top: 30px;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    padding: 8px 5px;
+    border-radius: 8px;
+    left: 15%;
+    z-index: 10;
+}
+
+.like-hover-row{
+    color: white;
+    font-size: .8375rem;
     line-height: 1.333;
 }

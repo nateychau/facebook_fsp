@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getUser } from '../../actions/user_actions';
+import LikeHover from './like_hover';
 
 const mSTP = (state, ownProps) => {
     return {
@@ -18,6 +19,19 @@ const mDTP = (dispatch) => {
 class Reaction extends React.Component{
     constructor(props){
         super(props);
+        this.state = {
+            displayLikes: false
+        }
+        this.showDisplay = this.showDisplay.bind(this);
+        this.hideDisplay = this.hideDisplay.bind(this);
+    }
+
+    showDisplay(){
+        this.setState({displayLikes: true});
+    }
+
+    hideDisplay(){
+        this.setState({displayLikes: false});
     }
 
     componentDidMount(){
@@ -47,6 +61,7 @@ class Reaction extends React.Component{
             }
             let firstLiker = this.props.firstLiker; 
             let secondLiker = this.props.secondLiker;
+            //come back to add logic for checking if self-liked 
             toRender = `${firstLiker.first_name} ${firstLiker.last_name} and ${secondLiker.first_name} ${secondLiker.last_name} liked your post`
 
         }
@@ -62,9 +77,10 @@ class Reaction extends React.Component{
 
         }
         return (
-            <div className='like-bar'>
+            <div className='like-bar' onMouseEnter={this.showDisplay} onMouseLeave={this.hideDisplay}>
                 <div className='like-icon'></div>
                 <div className='like-text'>{toRender}</div>
+                {this.state.displayLikes ? <LikeHover likes={this.props.likes}/> : <></>}
             </div>
         )
     }

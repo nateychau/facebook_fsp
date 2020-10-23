@@ -154,7 +154,7 @@ class PostItem extends React.Component{
                 </div>
                 <div className="post-item-body">{this.props.post.body}</div>
                 <div className="reaction-bar">
-                    <Reactions likes={this.props.likes}/>
+                    <Reactions likes={this.props.likes} currentUser={this.props.currentUser}/>
                 </div>
                 <div className="option-bar">
                     <LikeButton likeable_id={this.props.post.id} likeable_type={'Post'} user_id={this.props.currentUser.id} />

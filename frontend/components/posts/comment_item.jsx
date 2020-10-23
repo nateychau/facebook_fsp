@@ -106,7 +106,7 @@ class CommentItem extends React.Component{
                     <div className="comment-item-detail">
                         <Link to={`/users/${this.props.author.id}`}><div>{`${this.props.author.first_name} ${this.props.author.last_name}`}</div></Link>
                         <div className="comment-item-body">{this.props.comment.body}</div>
-                        <CommentLikes numLikes={this.props.likes.length}/>
+                        <CommentLikes likes={this.props.likes}/>
                     </div>
                     <div className='comment-options'>
                         <LikeButton likeable_id={this.props.comment.id} likeable_type={'Comment'} user_id={this.props.currentUser.id} />
