@@ -27,7 +27,9 @@ const mDTP = (dispatch, ownProps) => {
     return ({
         publishComment: (comment) => dispatch(publishComment(comment)),
         deletePost: () => dispatch(deletePost(ownProps.post.id)),
-        openModal: () => dispatch(openModal(['edit', ownProps.post.id, ownProps.post.body])),
+        openModal: () =>  ownProps.post.photo ? 
+        dispatch(openModal(['edit', ownProps.post.id, ownProps.post.body, ownProps.post.photo])) : 
+        dispatch(openModal(['edit', ownProps.post.id, ownProps.post.body])),
         getAuthor: () => dispatch(getUser(ownProps.post.author_id)),
         getUser: (id) => dispatch(getUser(id)),
     })
@@ -153,6 +155,9 @@ class PostItem extends React.Component{
                     </div> : <></>}
                 </div>
                 <div className="post-item-body">{this.props.post.body}</div>
+                {this.props.post.photo ? 
+                <div className="post-image"><img src={this.props.post.photo}></img></div>
+                : <></>}
                 <div className="reaction-bar">
                     <Reactions likes={this.props.likes} currentUser={this.props.currentUser}/>
                 </div>

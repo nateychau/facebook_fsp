@@ -55,9 +55,6 @@ class PhotoModal extends React.Component{
             let type = this.props.modal === 'profilePic' ? 'user[profile_photo]' : 'user[cover_photo]'
             formData.append([type], this.state.imageFile);
         }
-        for(let p of formData){
-            console.log(p);
-        }
         this.props.processForm(formData).then(this.setState({imageUrl: "", imageFile: null}));
         document.body.classList.remove('modal-open')
         this.props.closeModal();

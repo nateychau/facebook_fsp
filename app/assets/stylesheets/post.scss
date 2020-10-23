@@ -210,4 +210,19 @@
     color: white;
     font-size: .8375rem;
     line-height: 1.333;
+    display: flex;
+}
+
+.post-image{
+    max-width: 100%;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    display: flex;
+    align-self: center;
+}
+
+.post-image img{
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
 }

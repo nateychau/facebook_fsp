@@ -28,4 +28,6 @@ class Post < ApplicationRecord
     as: :likeable, 
     dependent: :destroy
 
+    has_one_attached :photo
+
 end

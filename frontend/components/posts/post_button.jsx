@@ -29,7 +29,7 @@ const PostButton = (props) => {
         buttonText = `What's on your mind, ${props.currentUser.first_name}?`
     }
     return (
-        <div className='post' onClick={props.openModal}>{buttonText}</div>
+        <div className='post' onClick={() => {props.openModal(); document.body.classList.add('modal-open');}}>{buttonText}</div>
     )
 }
 

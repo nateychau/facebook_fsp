@@ -121,6 +121,7 @@
     font-size: .9375rem;
     background: #1877f2;
     color: #fff;
+    margin-bottom: 10px;
 }
 
 .post-modal button:disabled{
@@ -136,4 +137,9 @@
 .post-modal button:hover{
     cursor: pointer;
     background: #146ee4;
+}
+
+
+#post-upload{
+    flex-grow: 1;
 }
