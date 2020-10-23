@@ -611,7 +611,7 @@ p21 = Post.create({
 p21.photo.attach(io: open('https://facebewk-seeds.s3-us-west-1.amazonaws.com/dark+shadows+pitch+3-3.jpg'), filename: 'p21.jpg')
 
 l35 = Like.create({
-    likeable_id: p22.id,
+    likeable_id: p21.id,
     likeable_type: "Post",
     user_id: brit.id
 })
@@ -619,7 +619,7 @@ l35 = Like.create({
 c15 = Comment.create({
     body: "Sure seems high!",
     author_id: jana.id,
-    post_id: p22.id
+    post_id: p21.id
 })
 
 fr1 = FriendRequest.create({
