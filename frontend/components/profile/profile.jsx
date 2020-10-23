@@ -21,7 +21,8 @@ const mSTP = (state, ownProps) => {
         friendsList: getFriends(ownProps.match.params.userId, state.entities.friendships),
         myPendingRequests: getOutgoingFriendRequests(state.entities.friendRequests, state.session.currentUser),
         myIncomingRequests: getIncomingFriendRequests(state.entities.friendRequests, state.session.currentUser),
-        myFriends: getFriends(state.session.currentUser, state.entities.friendships)
+        myFriends: getFriends(state.session.currentUser, state.entities.friendships),
+        isFetching: state.ui.isFetching,
         // friendships: getFriendships(ownProps.match.params.userId, state.entities.friendships)
     })
 }
@@ -65,7 +66,7 @@ class Profile extends React.Component{
         }
 
         render(){
-            if(!this.props.user){
+            if(this.props.isFetching){
                 return null
             }
             let renderedPage;
@@ -77,7 +78,7 @@ class Profile extends React.Component{
             } else if(this.state.page === 'friends'){
                 renderedPage = <Friends user={this.props.user} full={true}/>
             }else if(this.state.page === 'photos'){
-                renderedPage = <Photos user={this.props.user} />
+                renderedPage = <Photos user={this.props.user} full={true}/>
             }
             
             if(this.props.errors.length){

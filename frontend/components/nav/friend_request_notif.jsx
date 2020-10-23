@@ -47,7 +47,7 @@ class FriendRequestNotif extends React.Component{
     }
 
     handleRedirect(){
-        this.props.history.push(`users/${this.props.requesterId}`)
+        this.props.history.replace(`/users/${this.props.requesterId}`)
         // <Redirect to={`users/${this.props.requesterId}`}/>
     }
 

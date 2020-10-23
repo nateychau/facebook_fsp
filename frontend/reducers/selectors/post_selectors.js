@@ -28,3 +28,13 @@ export const getPostsByAuthorIdArray = (posts, idArr, currentUserId) => {
 	}
 	return result;
 }
+
+// export const getPhotos = ( posts ) => {
+// 	let result = [];
+// 	for (let id in posts){
+// 		if(posts[id].photos){
+// 			result.push(posts[id].photo)
+// 		}
+// 	}
+// 	return result;
+// }

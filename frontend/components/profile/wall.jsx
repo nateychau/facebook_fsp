@@ -45,7 +45,7 @@ class Wall extends React.Component{
     }
 
     componentWillUnmount(){
-        this.props.clearPosts();
+        // this.props.clearPosts();
     }
 
 

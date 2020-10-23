@@ -2,6 +2,7 @@ import React from 'react'
 import Wall from './wall';
 import PostButton from '../posts/post_button';
 import Friends from './friends';
+import Photos from './photos'
 
 export default class Timeline extends React.Component{
     constructor(props){
@@ -21,10 +22,7 @@ export default class Timeline extends React.Component{
                         <div className='intro-row'><div className="location-icon"/>Lives in: {this.props.user.location}</div>
                         <div className='intro-row'><div className="birthday-icon"/>Born on: {this.props.user.birthday}</div>
                     </div>
-                    <div className="profile-photos">
-                        <div>Photos</div>
-                        {/* may need to refactor into components */}
-                    </div>
+                    <Photos full={false} />
                     <div className="profile-friends">
                         <Friends user={this.props.user} full={false}/>
                     </div>

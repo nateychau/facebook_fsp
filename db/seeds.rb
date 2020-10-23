@@ -189,6 +189,8 @@ p3 = Post.create({
     wall_id: enawk.id 
 })
 
+p3.photo.attach(io: open('https://facebewk-seeds.s3-us-west-1.amazonaws.com/IMG_0808.jpg'), filename: 'p3.jpg')
+
 p4 = Post.create({
     body: "What a day... I can't wait to get home and watch some anime",
     author_id: becky.id,
@@ -230,6 +232,7 @@ p6 = Post.create({
     author_id: jo.id,
     wall_id: jo.id 
 })
+p6.photo.attach(io: open('https://facebewk-seeds.s3-us-west-1.amazonaws.com/IMG_0965.jpg'), filename: 'p6.jpg')
 
 p7 = Post.create({
     body: "Looks ABSOLUTELY delicious. I can't WAIT to dig in",
@@ -274,6 +277,7 @@ p8 = Post.create({
     author_id: enawk.id,
     wall_id:  enawk.id
 })
+p8.photo.attach(io: open('https://facebewk-seeds.s3-us-west-1.amazonaws.com/IMG_1354.jpg'), filename: 'p8.jpg')
 
 l8 = Like.create({
     likeable_id: p8.id,

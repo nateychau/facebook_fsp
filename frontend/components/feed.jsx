@@ -36,7 +36,7 @@ class Feed extends React.Component {
     }
 
     render(){
-        if(!this.props.user){
+        if(!this.props.user || this.props.isFetching){
             return null
         }
         const postArr = this.props.posts.length ? this.props.posts.reverse().map(post => {
