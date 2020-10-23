@@ -77,7 +77,7 @@ export default class AboutRow extends React.Component{
         let dropdown = false;
         let icon = this.props.type; 
         if(this.props.type === 'work'){
-            verb = 'Works at ';
+            verb = 'Work: ';
             label = 'Work';
             text = true;
         }

@@ -32,7 +32,7 @@ export default class LoginForm extends React.Component {
 
     loginDemo(){
         let user = {
-            email: "lasa@demo.demo",
+            email: "de@demo.demo",
             password: "123456"
         }
         this.props.processForm(user);

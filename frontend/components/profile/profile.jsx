@@ -51,7 +51,7 @@ class Profile extends React.Component{
             // console.log('component updated')
             // console.log(this.props)
             if(this.props.match.params.userId !== prevProps.match.params.userId){
-                this.props.getUser(this.props.match.params.userId)
+                this.props.getUser(this.props.match.params.userId).then(this.setState({page: 'timeline'}))
             }
         }
 
@@ -66,7 +66,7 @@ class Profile extends React.Component{
         }
 
         render(){
-            if(this.props.isFetching){
+            if(this.props.isFetching || !this.props.user){
                 return null
             }
             let renderedPage;
@@ -113,6 +113,7 @@ class Profile extends React.Component{
                     wallUserId={this.props.user.id}
                     text={'Respond'}
                     type={'respond'}/>
+                    renderedPage = <Timeline user={this.props.user} currentUser={this.props.currentUser} notFriends={true}/>
                 }
                 else{
                     button = <SendRequest 

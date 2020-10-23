@@ -195,9 +195,23 @@
     height: 106px;
     width: 106px;
     margin-right: 3px;
+    margin-bottom: 3px;
+}
+
+.full .photo-thumb{
+    height: 160px; 
+    width: 160px;
 }
 
 .photo-thumb:nth-child(3n+3){
+    margin-right: 0px;
+}
+
+.full .photo-thumb:nth-child(3n+3){
+    margin-right: 3px;
+}
+
+.full .photo-thumb:nth-child(5n+5){
     margin-right: 0px;
 }
 

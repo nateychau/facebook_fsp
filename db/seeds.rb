@@ -7,11 +7,25 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'open-uri'
 
+User.destroy_all
+User.connection.execute('ALTER SEQUENCE users_id_seq RESTART WITH 1') 
+Comment.destroy_all 
+Comment.connection.execute('ALTER SEQUENCE comments_id_seq RESTART WITH 1') 
+Post.destroy_all 
+Post.connection.execute('ALTER SEQUENCE posts_id_seq RESTART WITH 1') 
+FriendRequest.destroy_all 
+FriendRequest.connection.execute('ALTER SEQUENCE friend_requests_id_seq RESTART WITH 1')
+Friendship.destroy_all 
+Friendship.connection.execute('ALTER SEQUENCE friendships_id_seq RESTART WITH 1')  
+Like.destroy_all 
+Like.connection.execute('ALTER SEQUENCE likes_id_seq RESTART WITH 1') 
+
+
 lasa = User.create({
-    email: "lasa@demo.demo", 
+    email: "de@demo.demo", 
     password: "123456", 
-    first_name: "Lasa", 
-    last_name: "Gna", 
+    first_name: "De", 
+    last_name: "Mouser", 
     bio: "I love bird watching and playing the saxophone with my buddies", 
     birthday: "9/13/2000", 
     location: "San Diego, CA",

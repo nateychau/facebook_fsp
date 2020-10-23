@@ -53,7 +53,7 @@ class Reaction extends React.Component{
                 return null
             }
             let liker = this.props.firstLiker;
-            toRender = `${liker.first_name} ${liker.last_name} liked your post`
+            toRender = `${liker.first_name} ${liker.last_name} liked this post`
         }
         else if(this.props.likes.length === 2){
             if(!this.props.firstLiker || !this.props.secondLiker){
@@ -62,7 +62,7 @@ class Reaction extends React.Component{
             let firstLiker = this.props.firstLiker; 
             let secondLiker = this.props.secondLiker;
             //come back to add logic for checking if self-liked 
-            toRender = `${firstLiker.first_name} ${firstLiker.last_name} and ${secondLiker.first_name} ${secondLiker.last_name} liked your post`
+            toRender = `${firstLiker.first_name} ${firstLiker.last_name} and ${secondLiker.first_name} ${secondLiker.last_name} liked this post`
 
         }
         else if(this.props.likes.length > 2){
@@ -73,7 +73,7 @@ class Reaction extends React.Component{
             let secondLiker = this.props.secondLiker;
             let others = this.props.likes.length - 2;
             let text = others === 1 ? 'other' : 'others';
-            toRender = `${firstLiker.first_name} ${firstLiker.last_name}, ${secondLiker.first_name} ${secondLiker.last_name} and ${others} ${text} liked your post`
+            toRender = `${firstLiker.first_name} ${firstLiker.last_name}, ${secondLiker.first_name} ${secondLiker.last_name} and ${others} ${text} liked this post`
 
         }
         return (

@@ -71,7 +71,9 @@ class Navbar extends React.Component {
         return (
             <div className="nav-container">
                 <div className="nav-left">
-                    <Link to="/"><button className="btn">Logo</button></Link>
+                    <Link to="/"><button id="logo-btn" className="btn">
+                        <div className='logo'></div>    
+                    </button></Link>
                 </div>
                 <div className="nav-center">
                     <a href="https://github.com/nateychau" target="_blank"><i className="fab fa-github"></i></a>

@@ -17,7 +17,7 @@ export default class Timeline extends React.Component{
                 <div className="profile-sticky"> 
                     <div className="profile-intro">
                         <div>Intro</div>
-                        <div className='intro-row'><div className="work-icon"/>Works at {this.props.user.work}</div>
+                        <div className='intro-row'><div className="work-icon"/>Work: {this.props.user.work}</div>
                         <div className='intro-row'><div className="school-icon"/>Studied at: {this.props.user.school}</div>
                         <div className='intro-row'><div className="location-icon"/>Lives in: {this.props.user.location}</div>
                         <div className='intro-row'><div className="birthday-icon"/>Born on: {this.props.user.birthday}</div>
