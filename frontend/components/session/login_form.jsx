@@ -54,8 +54,8 @@ export default class LoginForm extends React.Component {
         return (
             <div className="splash">
                 <div className="splash-text">
-                    <h2>facebook</h2>
-                    <h4>Connect with friends and the world around you on Facebook.</h4>
+                    <h2>facebewk</h2>
+                    <h4>Connect with friends and the world around you on Facebewk.</h4>
                 </div>
                 <div className="login">
                     {/* <Link to={path}>{linkHeader}</Link> */}
