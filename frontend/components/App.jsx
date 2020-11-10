@@ -8,8 +8,13 @@ import Modal from './session/modal'
 import Profile from './profile/profile'
 import PostModal from './posts/post_modal'
 import ProfilePicModal from './profile/profil_pic_modal'
+import ReactGA from 'react-ga';
 
-const App = () => (
+
+const App = () => {
+  ReactGA.initialize('G-GTEBZXX0BX');
+  ReactGA.pageview('/');
+  return (
   <div className='app'>
 
     <Modal/>
@@ -24,6 +29,7 @@ const App = () => (
       <Redirect to="/" />
     </Switch>
   </div>
-);
+  )
+};
 
 export default App;
