@@ -26,33 +26,33 @@ Facebewk is a functional Facebook clone that allows users to create profiles for
 
 ### Profiles
 
-Profile Header
+**Profile Header**
 ![Profiles](https://raw.githubusercontent.com/nateychau/facebook_fsp/master/app/assets/images/profile.PNG)
 
-Wall 
+**Wall** 
 ![Profiles](https://raw.githubusercontent.com/nateychau/facebook_fsp/master/app/assets/images/wall.PNG)
 
 
 ### News Feed
 
-News Feed
+**News Feed**
 ![News Feed](https://raw.githubusercontent.com/nateychau/facebook_fsp/master/app/assets/images/news%20feed.PNG)
 
 ### Posts
 
-Posting (Possible from wall or news feed)
+**Posting** (Possible from wall or news feed)
 ![Posting](https://raw.githubusercontent.com/nateychau/facebook_fsp/master/app/assets/images/posting.PNG)
 
-Post Features (Includes post likes, comments, and comment likes)
+**Post Features** (Includes post likes, comments, and comment likes)
 ![Post Features](https://raw.githubusercontent.com/nateychau/facebook_fsp/master/app/assets/images/post_features.PNG)
 
-Image Posts 
+**Image Posts**
 
 ![Image Posts](https://raw.githubusercontent.com/nateychau/facebook_fsp/master/app/assets/images/image_post.PNG)
 
 ### Notifications
 
-For new friendships
+**For new friendships**
 
 ![Notification](https://raw.githubusercontent.com/nateychau/facebook_fsp/master/app/assets/images/notifications.png)
 
