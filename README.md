@@ -23,6 +23,37 @@ Facebewk is a functional Facebook clone that allows users to create profiles for
   
 ## Features: 
 
+### Profiles
+
+Profile Header
+![Profiles](https://raw.githubusercontent.com/nateychau/facebook_fsp/master/app/assets/images/profile.PNG)
+
+Wall 
+![Profiles](https://raw.githubusercontent.com/nateychau/facebook_fsp/master/app/assets/images/wall.PNG)
+
+
+### News Feed
+
+News Feed
+![News Feed](https://raw.githubusercontent.com/nateychau/facebook_fsp/master/app/assets/images/news%20feed.PNG)
+
+### Posts
+
+Posting (Possible from wall or news feed)
+![Posting](https://raw.githubusercontent.com/nateychau/facebook_fsp/master/app/assets/images/posting.PNG)
+
+Post Features (Includes post likes, comments, and comment likes)
+![Post Features](https://raw.githubusercontent.com/nateychau/facebook_fsp/master/app/assets/images/post_features.PNG)
+
+Image Posts 
+![Image Posts]()
+
+
+
+
+
+## Code Snippets
+
 ### Friendships
 Friendships and friend requests are a core feature of Facebewk, and they were a challenge to implement. For the sake of improving performance when making requests to the back end, each friendship is represented by two corresponding rows in a table - one where user A is the user and user B is the friend, and vice versa. This allows backend requests to be more specific, and helps the front end avoid having to do unnecesarry filtering. Connecting friend requests to friendships was also tricky, as I wanted to avoid leaving friend requests in the database where the users had already become friends. In order to tie them together, I created custom actions in the back end for the friendships controller. When a friend request is accepted, the two corresponding rows for the friendships table is created, and then the outstanding friend request is deleted. 
 
