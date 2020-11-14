@@ -24,6 +24,14 @@ Facebewk is a functional Facebook clone that allows users to create profiles for
   
 ## Features: 
 
+### User Authentication
+
+**Login**
+![Login](https://raw.githubusercontent.com/nateychau/facebook_fsp/master/app/assets/images/user_auth.PNG)
+
+**Sign Up**
+![Signup](https://raw.githubusercontent.com/nateychau/facebook_fsp/master/app/assets/images/modal.PNG)
+
 ### Profiles
 
 **Profile Header**
