@@ -20,6 +20,7 @@ Facebewk is a functional Facebook clone that allows users to create profiles for
 - Back end
   - Ruby on Rails 
   - PostgreSQL
+  - JBuilder
   
 ## Features: 
 
@@ -46,10 +47,20 @@ Post Features (Includes post likes, comments, and comment likes)
 ![Post Features](https://raw.githubusercontent.com/nateychau/facebook_fsp/master/app/assets/images/post_features.PNG)
 
 Image Posts 
-![Image Posts]()
 
+![Image Posts](https://raw.githubusercontent.com/nateychau/facebook_fsp/master/app/assets/images/image_post.PNG)
 
+### Notifications
 
+For new friendships
+
+![Notification](https://raw.githubusercontent.com/nateychau/facebook_fsp/master/app/assets/images/notifications.png)
+
+### Other features
+
+- Edit profile photo and cover photo
+- Edit about page
+- Edit and delete posts and comments
 
 
 ## Code Snippets
