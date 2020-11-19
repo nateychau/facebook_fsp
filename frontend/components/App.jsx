@@ -9,7 +9,7 @@ import Profile from './profile/profile'
 import PostModal from './posts/post_modal'
 import ProfilePicModal from './profile/profil_pic_modal'
 import ReactGA from 'react-ga';
-
+import { SearchIndexContainer } from './nav/search-index';
 
 const App = () => {
   ReactGA.initialize('G-GTEBZXX0BX');
@@ -24,6 +24,7 @@ const App = () => {
     <AuthRoute exact path="/" component={LoginFormContainer}/>
     <ProtectedRoute path="/" component={Navbar}/>
     <Switch>
+      <ProtectedRoute exact path="/search/:query" component={SearchIndexContainer}/>
       <ProtectedRoute path="/users/:userId" component={Profile}/>
       <ProtectedRoute exact path="/" component={Feed}/>
       <Redirect to="/" />

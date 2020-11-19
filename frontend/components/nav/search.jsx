@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { getUsers } from "../../actions/user_actions"
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
 const mSTP = (state) => {
   return {
@@ -26,6 +26,7 @@ class Search extends React.Component {
     this.handleInput = this.handleInput.bind(this);
     this.searchUsers = this.searchUsers.bind(this);
     this.handleBlur = this.handleBlur.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
   }
 
   handleInput(e){
@@ -38,8 +39,26 @@ class Search extends React.Component {
     })
   }
 
-  handleBlur(){
-    this.setState({focus: false});
+  componentWillUnmount(){
+    this.setState({
+      string: '',
+      results: [],
+      focus: false
+    })
+  }
+
+  handleBlur(event){
+    if (!event.currentTarget.contains(event.relatedTarget)){ 
+      this.setState({focus: false});
+    }
+  }
+
+  handleKeyPress(e){
+    if(e.key === 'Enter'){
+      console.log('in enter event')
+      let queryString = this.state.string.replace(" ", "_");
+      this.props.history.push(`/search/${queryString}`);
+    }
   }
 
   searchUsers(queryString){
@@ -67,16 +86,19 @@ class Search extends React.Component {
   render(){
     const resultList = this.state.results.map((user, i) => {
       return (
-        <Link key={i} to={`/users/${user.id}`}>
+        <Link key={i} to={`/users/${user.id}`} onClick={() => this.setState({focus: false})}>
           <li>{`${user.first_name} ${user.last_name}`}</li> 
         </Link>
       )
     })
 
     return (
-      <div className={
+      <div 
+      className={
         this.state.focus ? "search-container focus" : "search-container"
-      }>
+      }
+      onBlur={this.handleBlur}
+      >
         <input 
           className={
             this.state.focus ? "search-bar focus" : "search-bar"
@@ -85,7 +107,7 @@ class Search extends React.Component {
           placeholder="Search Facebewk"
           onFocus={() => {this.props.getUsers(); this.setState({focus: true})}}
           onChange={this.handleInput}
-          onBlur={this.handleBlur}
+          onKeyPress={this.handleKeyPress}
         >
         </input>
         <div className={
@@ -101,4 +123,4 @@ class Search extends React.Component {
   }
 }
 
-export const SearchContainer = connect(mSTP, mDTP)(Search);
+export const SearchContainer = withRouter(connect(mSTP, mDTP)(Search));
