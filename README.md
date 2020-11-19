@@ -69,6 +69,7 @@ Facebewk is a functional Facebook clone that allows users to create profiles for
 - Edit profile photo and cover photo
 - Edit about page
 - Edit and delete posts and comments
+- Search with search suggestions
 
 
 ## Code Snippets
