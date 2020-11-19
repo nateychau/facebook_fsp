@@ -93,11 +93,11 @@ class Navbar extends React.Component {
                             {this.props.currentUser.first_name}
                         </button>
                     </Link>
-                    <button id={this.state.messages ? 'active-nav-button' : ''} onClick={this.handleOpenDropdown("messages")} onBlur={this.handleCloseDropdown("messages")} className="util-btn"><div className="messages"></div></button>
+                    {/* <button id={this.state.messages ? 'active-nav-button' : ''} onClick={this.handleOpenDropdown("messages")} onBlur={this.handleCloseDropdown("messages")} className="util-btn"><div className="messages"></div></button>
                     {this.state.messages ? <div className="util-container">
                         <div>Messenger</div>
                         <div>You have no new messages</div>
-                    </div> : <></>}
+                    </div> : <></>} */}
                     <button id={this.state.notif ? 'active-nav-button' : ''} onClick={this.handleOpenDropdown("notif")} onBlur={this.handleCloseDropdown("notif")} className="util-btn"><div className="notifications"></div></button>
                     {this.state.notifCount ? <div className='notif-count'>{this.state.notifCount}</div> : <></>}
                     {this.state.notif ? <Notifications requests={this.props.friendRequests} /> : <></>}
