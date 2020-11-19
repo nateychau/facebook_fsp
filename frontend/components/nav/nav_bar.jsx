@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { logout } from '../../actions/session/session_actions';
 import { getIncomingFriendRequests } from '../../reducers/selectors/friend_request_selectors';
 import { getCurrentUser } from '../../actions/user_actions'
+import { SearchContainer } from './search';
 
 const mapStateToProps = (state) => {
     return ({
@@ -71,9 +72,12 @@ class Navbar extends React.Component {
         return (
             <div className="nav-container">
                 <div className="nav-left">
-                    <Link to="/"><button id="logo-btn" className="btn">
+                    <Link to="/">
+                      <button id="logo-btn" className="btn">
                         <div className='logo'></div>    
-                    </button></Link>
+                      </button>
+                    </Link>
+                    <SearchContainer />
                 </div>
                 <div className="nav-center">
                     <a href="https://github.com/nateychau/facebook_fsp" target="_blank"><i className="fab fa-github"></i></a>
