@@ -23,3 +23,24 @@ export const getRequesters = (requests) => {
     })
     return res;
 }
+
+export const getUsersFromQuery = (users, queryString) => {
+  if(!queryString.length) this.setState({results: []});
+    else {
+      const results = [];
+      for (let key in users){
+        const user = users[key];
+        const firstName = user.first_name.toLowerCase();
+        const lastName = user.last_name.toLowerCase();
+        if(
+          queryString.includes(firstName) ||
+          queryString.includes(lastName) ||
+          firstName.slice(0, queryString.length) === queryString ||
+          lastName.slice(0, queryString.length) === queryString
+          ){
+            results.push(user);
+        }
+      }
+      return results
+    }
+  }

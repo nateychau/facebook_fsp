@@ -71,11 +71,14 @@
 }
 
 .nav-center{
-    width: 33%
+    width: 33%;
 }
 
 .nav-left{
-    width: 33%
+    width: 33%;
+    position: relative;
+    display: flex;
+    align-items: center;
 }
 
 .prof-pic-thumb-smallest{
