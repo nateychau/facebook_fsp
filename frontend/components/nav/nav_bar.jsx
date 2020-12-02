@@ -82,7 +82,7 @@ class Navbar extends React.Component {
                 <div className="nav-center">
                     <a href="https://github.com/nateychau/facebook_fsp" target="_blank"><i className="fab fa-github"></i></a>
                     <a href="https://www.linkedin.com/in/nathan-chau-363130180/" target="_blank"><i className="fab fa-linkedin"></i></a>
-                    <a href="https://nateychau.github.io/" target="_blank"><i className="fas fa-address-card"></i></a>
+                    <a href="https://nychau.com/#/" target="_blank"><i className="fas fa-address-card"></i></a>
                 </div>
                 <div className="nav-right">
                     <Link to={`/users/${this.props.currentUser.id}`}>

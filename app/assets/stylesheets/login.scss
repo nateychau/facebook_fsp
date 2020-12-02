@@ -113,3 +113,26 @@ form{
     line-height: 32px;
     letter-spacing: normal;
 }
+
+.splash-right{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.splash-right > *{
+  top: 40px;
+}
+
+.splash-right > .nav-center{
+  justify-content: center;
+  margin-top: 15px;
+  display: flex;
+  position: relative; 
+  right: 50px;
+}
+
+.splash-right > .nav-center a:hover{
+  background-color: inherit;
+  opacity: 0.8;
+}
